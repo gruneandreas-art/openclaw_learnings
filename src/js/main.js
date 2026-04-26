@@ -254,4 +254,103 @@
     card.addEventListener('pointerdown', onPointerDown);
   });
 
+  /* ===== Newsletter Signup ===== */
+  // To activate real email delivery: create a free form at formspree.io
+  // and replace FORMSPREE_FORM_ID below with your form ID.
+  const FORMSPREE_FORM_ID = null; // e.g. 'xpzgkwqr'
+
+  document.querySelectorAll('.newsletter-section').forEach(function (section) {
+    const options   = section.querySelectorAll('.nl-option');
+    const form      = section.querySelector('.nl-form');
+    const errorEl   = section.querySelector('.nl-form__error');
+    const successEl = section.querySelector('.nl-success');
+
+    if (!form) return;
+
+    // Toggle option cards
+    options.forEach(function (option) {
+      option.addEventListener('click', function () {
+        const cb = option.querySelector('.nl-option__checkbox');
+        option.classList.toggle('is-active');
+        cb.checked = option.classList.contains('is-active');
+        if (errorEl) errorEl.textContent = '';
+      });
+    });
+
+    // Submit
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const emailInput = form.querySelector('.nl-form__input');
+      const btn        = form.querySelector('.nl-form__btn');
+      const email      = emailInput.value.trim();
+      const selected   = Array.from(options)
+        .filter(function (o) { return o.classList.contains('is-active'); })
+        .map(function (o) { return o.dataset.value; });
+
+      // Validate: at least one option
+      if (!selected.length) {
+        options.forEach(function (o) {
+          o.classList.add('nl-option--shake');
+          setTimeout(function () { o.classList.remove('nl-option--shake'); }, 400);
+        });
+        if (errorEl) errorEl.textContent = 'Bitte mindestens eine Option auswählen.';
+        return;
+      }
+
+      // Validate email
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (errorEl) errorEl.textContent = 'Bitte eine gültige E-Mail-Adresse eingeben.';
+        emailInput.focus();
+        return;
+      }
+
+      if (errorEl) errorEl.textContent = '';
+      btn.disabled    = true;
+      btn.textContent = '…';
+
+      const payload = {
+        email:       email,
+        interessen:  selected.join(', '),
+        _subject:    'Neue Newsletter-Anmeldung — Face Art Zürich (' + selected.join(' + ') + ')'
+      };
+
+      const endpoint = FORMSPREE_FORM_ID
+        ? 'https://formspree.io/f/' + FORMSPREE_FORM_ID
+        : null;
+
+      function showSuccess() {
+        form.hidden      = true;
+        section.querySelector('.newsletter-section__options').hidden = true;
+        section.querySelector('.newsletter-section__subtitle').hidden = true;
+        successEl.hidden = false;
+      }
+
+      if (endpoint) {
+        fetch(endpoint, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body:    JSON.stringify(payload)
+        })
+          .then(function (res) {
+            if (res.ok) {
+              showSuccess();
+            } else {
+              btn.disabled    = false;
+              btn.textContent = 'Jetzt anmelden';
+              if (errorEl) errorEl.textContent = 'Fehler beim Senden. Bitte versuche es erneut.';
+            }
+          })
+          .catch(function () {
+            btn.disabled    = false;
+            btn.textContent = 'Jetzt anmelden';
+            if (errorEl) errorEl.textContent = 'Keine Verbindung. Bitte versuche es erneut.';
+          });
+      } else {
+        // No Formspree configured — show success after short delay (demo mode)
+        setTimeout(showSuccess, 700);
+      }
+    });
+  });
+
 })();

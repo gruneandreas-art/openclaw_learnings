@@ -349,6 +349,71 @@
       </div>
     </section>
 
+    <!-- ========== NEWSLETTER ========== -->
+    <section class="newsletter-section" id="newsletter" aria-label="Newsletter Anmeldung">
+      <div class="container">
+        <div class="newsletter-section__inner">
+          <span class="newsletter-section__badge">Bleib dabei</span>
+          <h2 class="newsletter-section__title">Nie mehr einen<br><em>Event verpassen.</em></h2>
+          <p class="newsletter-section__subtitle">Wähle, was dich interessiert — Isa schreibt dir direkt.<br>Kein Spam, jederzeit abmeldbar.</p>
+
+          <div class="newsletter-section__options" role="group" aria-label="Newsletter-Optionen">
+
+            <label class="nl-option is-active" data-value="events">
+              <input type="checkbox" class="nl-option__checkbox" name="pref-events" checked aria-label="Events & Auftritte abonnieren">
+              <div class="nl-option__header">
+                <div class="nl-option__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="15" r="1" fill="currentColor"/><circle cx="12" cy="15" r="1" fill="currentColor"/><circle cx="16" cy="15" r="1" fill="currentColor"/></svg>
+                </div>
+                <div class="nl-option__check" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
+                </div>
+              </div>
+              <div>
+                <p class="nl-option__title">Events &amp; Auftritte</p>
+                <p class="nl-option__text">Erfahre als Erste, an welchen öffentlichen Events in Zürich &amp; Dübendorf Isa zu finden ist — Weihnachtsmärkte, Stadtfeste und mehr.</p>
+              </div>
+            </label>
+
+            <label class="nl-option" data-value="angebote">
+              <input type="checkbox" class="nl-option__checkbox" name="pref-angebote" aria-label="Persönliche Angebote abonnieren">
+              <div class="nl-option__header">
+                <div class="nl-option__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <div class="nl-option__check" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
+                </div>
+              </div>
+              <div>
+                <p class="nl-option__title">Persönliche Angebote</p>
+                <p class="nl-option__text">Exklusive Frühbucher-Rabatte und massgeschneiderte Angebote für Geburtstage, Hochzeiten &amp; Firmenfeiern — direkt in dein Postfach.</p>
+              </div>
+            </label>
+
+          </div>
+
+          <form class="nl-form" id="nlFormIndex" novalidate>
+            <div class="nl-form__field">
+              <input type="email" class="nl-form__input" placeholder="deine@email.ch" required aria-label="E-Mail Adresse">
+              <button type="submit" class="nl-form__btn">Jetzt anmelden</button>
+            </div>
+            <p class="nl-form__error" role="alert" aria-live="polite"></p>
+            <p class="nl-form__privacy">Kein Spam. Jederzeit mit einem Klick abmeldbar.</p>
+          </form>
+
+          <div class="nl-success" id="nlSuccessIndex" hidden aria-live="polite">
+            <div class="nl-success__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" aria-hidden="true"><polyline points="4,12 9,17 20,6"/></svg>
+            </div>
+            <h3 class="nl-success__title">Danke, du bist dabei!</h3>
+            <p class="nl-success__text">Isa freut sich — du erhältst bald die ersten Updates direkt in dein Postfach.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- ========== CONTACT ========== -->
     <section class="section section--cream" id="kontakt">
       <div class="container">
