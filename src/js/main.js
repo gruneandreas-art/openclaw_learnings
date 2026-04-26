@@ -75,17 +75,17 @@
     });
   }
 
-  /* ===== Contact Form ===== */
-  const form    = document.getElementById('contactForm');
-  const confirm = document.getElementById('formConfirm');
+  /* ===== Contact Forms ===== */
+  document.querySelectorAll('.contact-form').forEach(function (form) {
+    var confirmId = form.id === 'messenContactForm' ? 'messenFormConfirm' : 'formConfirm';
+    var confirm = document.getElementById(confirmId);
+    if (!confirm) return;
 
-  if (form && confirm) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // Basic validation
-      const requiredFields = form.querySelectorAll('[required]');
-      let valid = true;
+      var requiredFields = form.querySelectorAll('[required]');
+      var valid = true;
 
       requiredFields.forEach(function (field) {
         field.style.borderColor = '';
@@ -97,32 +97,32 @@
 
       if (!valid) return;
 
-      // Disable button during "send"
-      const btn = form.querySelector('button[type="submit"]');
+      var btn = form.querySelector('button[type="submit"]');
+      var originalText = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Wird gesendet…';
 
-      // Simulate send (replace with real backend)
       setTimeout(function () {
         form.reset();
         btn.disabled = false;
-        btn.textContent = 'Senden';
+        btn.textContent = originalText;
         confirm.classList.add('contact-form__confirm--visible');
 
-        // Hide confirmation after 6s
         setTimeout(function () {
           confirm.classList.remove('contact-form__confirm--visible');
         }, 6000);
       }, 900);
     });
 
-    // Remove error border on input
-    form.querySelectorAll('input, textarea').forEach(function (field) {
+    form.querySelectorAll('input, textarea, select').forEach(function (field) {
       field.addEventListener('input', function () {
         this.style.borderColor = '';
       });
+      field.addEventListener('change', function () {
+        this.style.borderColor = '';
+      });
     });
-  }
+  });
 
   /* ===== Smooth scroll for anchor links ===== */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
