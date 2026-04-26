@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(brew --version)",
+      "WebFetch(domain:skills.sh)",
+      "Bash(curl -s \"https://raw.githubusercontent.com/anthropics/skills/main/.claude-plugin/marketplace.json\")",
+      "Bash(npx --version)",
+      "Bash(curl -s \"https://api.github.com/repos/nextlevelbuilder/ui-ux-pro-max-skill/contents/\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/main/.claude-plugin/marketplace.json\")",
+      "Bash(cp \"/Users/andreasgrune/Desktop/Kinderschminken/Bilder CD/ Motive bearbeitet für Marketing/Objekt-4.png\" \"/Users/andreasgrune/Desktop/VS CODE/src/images/gallery/1-blumen.png\")",
+      "Bash(cp \"/Users/andreasgrune/Desktop/Kinderschminken/Bilder CD/ Motive bearbeitet für Marketing/Eiskönigin.png\" \"/Users/andreasgrune/Desktop/VS CODE/src/images/gallery/2-eiskoenigin.png\")",
+      "Bash(cp \"/Users/andreasgrune/Desktop/Kinderschminken/Bilder CD/ Motive bearbeitet für Marketing/Butterfly.png\" \"/Users/andreasgrune/Desktop/VS CODE/src/images/gallery/3-butterfly.png\")",
+      "Bash(cp \"/Users/andreasgrune/Desktop/Kinderschminken/Bilder CD/ Motive bearbeitet für Marketing/Flugi.png\" \"/Users/andreasgrune/Desktop/VS CODE/src/images/gallery/4-flugi.png\")",
+      "Bash(cp \"/Users/andreasgrune/Desktop/Kinderschminken/Bilder CD/ Motive bearbeitet für Marketing/pikachu.png\" \"/Users/andreasgrune/Desktop/VS CODE/src/images/gallery/5-pikachu.png\")",
+      "Bash(cp \"/Users/andreasgrune/Desktop/Kinderschminken/Eigene Vorlagen/Erwachsenendesigns/WhatsApp Image 2025-07-27 at 21.11.41-5.jpeg\" \"/Users/andreasgrune/Desktop/VS CODE/src/images/gallery/6-adult-magnolie.jpg\")",
+      "Bash(cp \"/Users/andreasgrune/Desktop/Kinderschminken/Bilder CD/Objekt-2.png\" \"/Users/andreasgrune/Desktop/VS CODE/src/images/gallery/7-einhorn.png\")",
+      "Bash(cp \"/Users/andreasgrune/Desktop/Kinderschminken/Bilder CD/ Motive bearbeitet für Marketing/Objekt-3.png\" \"/Users/andreasgrune/Desktop/VS CODE/src/images/gallery/8-krone.png\")",
+      "Bash(cp \"/Users/andreasgrune/Desktop/Kinderschminken/Bilder CD/ Motive bearbeitet für Marketing/Butterfly2.png\" \"/Users/andreasgrune/Desktop/VS CODE/src/images/gallery/9-butterfly2.png\")",
+      "Bash(cp \"/Users/andreasgrune/Desktop/Kinderschminken/Eigene Vorlagen/Erwachsenendesigns/WhatsApp Image 2025-07-27 at 17.34.42.jpeg\" \"/Users/andreasgrune/Desktop/VS CODE/src/images/gallery/10-adult-blue.jpg\")"
+    ]
+  }
+}
