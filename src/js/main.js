@@ -76,17 +76,19 @@
   }
 
   /* ===== Contact Forms ===== */
+  var CONTACT_ENDPOINT = 'https://formspree.io/f/myklqzbr';
+
   document.querySelectorAll('.contact-form').forEach(function (form) {
     var confirmId = form.id === 'messenContactForm' ? 'messenFormConfirm' : 'formConfirm';
-    var confirm = document.getElementById(confirmId);
-    if (!confirm) return;
+    var confirmEl = document.getElementById(confirmId);
+    if (!confirmEl) return;
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
+      // Validation
       var requiredFields = form.querySelectorAll('[required]');
       var valid = true;
-
       requiredFields.forEach(function (field) {
         field.style.borderColor = '';
         if (!field.value.trim()) {
@@ -94,7 +96,6 @@
           field.style.borderColor = '#E07070';
         }
       });
-
       if (!valid) return;
 
       var btn = form.querySelector('button[type="submit"]');
@@ -102,25 +103,41 @@
       btn.disabled = true;
       btn.textContent = 'Wird gesendet…';
 
-      setTimeout(function () {
-        form.reset();
-        btn.disabled = false;
-        btn.textContent = originalText;
-        confirm.classList.add('contact-form__confirm--visible');
+      // Collect all form fields
+      var data = {};
+      new FormData(form).forEach(function (value, key) { data[key] = value; });
 
-        setTimeout(function () {
-          confirm.classList.remove('contact-form__confirm--visible');
-        }, 6000);
-      }, 900);
+      fetch(CONTACT_ENDPOINT, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body:    JSON.stringify(data)
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (json) {
+          btn.disabled = false;
+          btn.textContent = originalText;
+          if (json.ok) {
+            form.reset();
+            confirmEl.classList.add('contact-form__confirm--visible');
+            setTimeout(function () {
+              confirmEl.classList.remove('contact-form__confirm--visible');
+            }, 6000);
+          } else {
+            confirmEl.textContent = 'Fehler beim Senden — bitte versuche es erneut.';
+            confirmEl.classList.add('contact-form__confirm--visible');
+          }
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = originalText;
+          confirmEl.textContent = 'Keine Verbindung — bitte versuche es erneut.';
+          confirmEl.classList.add('contact-form__confirm--visible');
+        });
     });
 
     form.querySelectorAll('input, textarea, select').forEach(function (field) {
-      field.addEventListener('input', function () {
-        this.style.borderColor = '';
-      });
-      field.addEventListener('change', function () {
-        this.style.borderColor = '';
-      });
+      field.addEventListener('input',  function () { this.style.borderColor = ''; });
+      field.addEventListener('change', function () { this.style.borderColor = ''; });
     });
   });
 
@@ -255,9 +272,7 @@
   });
 
   /* ===== Newsletter Signup ===== */
-  // To activate real email delivery: create a free form at formspree.io
-  // and replace FORMSPREE_FORM_ID below with your form ID.
-  const FORMSPREE_FORM_ID = null; // e.g. 'xpzgkwqr'
+  const FORMSPREE_FORM_ID = 'myklqzbr';
 
   document.querySelectorAll('.newsletter-section').forEach(function (section) {
     const options   = section.querySelectorAll('.nl-option');
