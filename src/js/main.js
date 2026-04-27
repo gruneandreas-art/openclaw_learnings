@@ -107,6 +107,11 @@
       var data = {};
       new FormData(form).forEach(function (value, key) { data[key] = value; });
 
+      // Email subject per form type
+      data._subject = form.id === 'messenContactForm'
+        ? 'Messeanfrage — Face Art Zürich'
+        : 'Neue Kontaktanfrage — Face Art Zürich';
+
       fetch(CONTACT_ENDPOINT, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
