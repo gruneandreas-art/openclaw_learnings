@@ -375,4 +375,25 @@
     });
   });
 
+  /* ===== FAQ Accordion ===== */
+  document.querySelectorAll('.faq__btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = this.closest('.faq__item');
+      var card = this.closest('.faq__card');
+      var isOpen = item.classList.contains('faq__item--open');
+
+      // Close all items in this card
+      card.querySelectorAll('.faq__item').forEach(function (i) {
+        i.classList.remove('faq__item--open');
+        i.querySelector('.faq__btn').setAttribute('aria-expanded', 'false');
+      });
+
+      // If it was closed, open it
+      if (!isOpen) {
+        item.classList.add('faq__item--open');
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
 })();

@@ -2506,67 +2506,132 @@ span.t-card__avatar {
    FAQ Section
    =================================================== */
 
-.faq-section {
-  background: var(--cream);
-}
+.faq-section { background: var(--cream); }
+
 .faq__header {
   text-align: center;
   margin-bottom: var(--sp-8);
 }
-.faq__list {
+
+.faq__card {
   max-width: 720px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
-.faq__item {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
   background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 4px 28px rgba(0,0,0,.07);
   overflow: hidden;
-  transition: box-shadow var(--t);
 }
-.faq__item:hover {
-  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+
+.faq__card-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  padding: var(--sp-6) var(--sp-6) var(--sp-4);
 }
-.faq__item[open] {
-  box-shadow: 0 2px 16px rgba(104,169,160,.12);
-  border-color: rgba(104,169,160,.4);
+
+/* --- Item --- */
+.faq__item {
+  border-top: 1px solid var(--border);
 }
-.faq__question {
+
+.faq__btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--sp-4);
-  padding: var(--sp-4) var(--sp-5);
-  font-weight: 600;
-  font-size: .97rem;
-  color: var(--text-dark);
+  width: 100%;
+  padding: var(--sp-4) var(--sp-6);
+  background: transparent;
+  border: none;
   cursor: pointer;
-  list-style: none;
-  user-select: none;
+  text-align: left;
+  gap: var(--sp-4);
+  transition: background var(--t);
 }
-.faq__question::-webkit-details-marker { display: none; }
-.faq__question::after {
-  content: '';
-  width: 18px;
-  height: 18px;
+.faq__btn:hover { background: rgba(104,169,160,.05); }
+
+.faq__btn-left {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex: 1;
+  min-width: 0;
+}
+
+.faq__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(104,169,160,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mint);
   flex-shrink: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%2368A9A0' stroke-width='2.5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  transition: transform var(--t);
 }
-.faq__item[open] .faq__question::after {
-  transform: rotate(180deg);
+.faq__icon svg { width: 15px; height: 15px; }
+
+.faq__btn-text {
+  font-weight: 600;
+  font-size: .95rem;
+  color: var(--text-dark);
+  line-height: 1.45;
 }
+
+/* --- Plus / Minus toggle --- */
+.faq__toggle {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  transition: background var(--t), border-color var(--t);
+}
+.faq__item--open .faq__toggle {
+  background: var(--mint);
+  border-color: var(--mint);
+}
+.faq__toggle-icon {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  transition: opacity .22s ease;
+}
+.faq__toggle-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--text-mid);
+}
+.faq__item--open .faq__toggle-icon svg { stroke: #fff; }
+.faq__toggle-plus  { opacity: 1; }
+.faq__toggle-minus { opacity: 0; }
+.faq__item--open .faq__toggle-plus  { opacity: 0; }
+.faq__item--open .faq__toggle-minus { opacity: 1; }
+
+/* --- Animated answer (grid trick — no JS height calc needed) --- */
+.faq__answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .35s ease;
+}
+.faq__item--open .faq__answer-wrap {
+  grid-template-rows: 1fr;
+}
+.faq__answer-inner { overflow: hidden; }
 .faq__answer {
-  padding: 0 var(--sp-5) var(--sp-4);
-  font-size: .92rem;
+  padding: var(--sp-3) var(--sp-6) var(--sp-5) calc(var(--sp-6) + 32px + var(--sp-3));
+  font-size: .9rem;
   color: var(--text-mid);
   line-height: 1.75;
   border-top: 1px solid var(--border);
-  padding-top: var(--sp-3);
+}
+
+@media (max-width: 600px) {
+  .faq__answer { padding-left: var(--sp-5); }
+  .faq__btn    { padding: var(--sp-4) var(--sp-4); }
 }
