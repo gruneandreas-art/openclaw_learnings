@@ -304,9 +304,10 @@
       const emailInput = form.querySelector('.nl-form__input');
       const btn        = form.querySelector('.nl-form__btn');
       const email      = emailInput.value.trim();
-      const selected   = Array.from(options)
+      const labelMap = { events: 'Events & Auftritte', angebote: 'Persönliche Angebote' };
+      const selected = Array.from(options)
         .filter(function (o) { return o.classList.contains('is-active'); })
-        .map(function (o) { return o.dataset.value; });
+        .map(function (o) { return labelMap[o.dataset.value] || o.dataset.value; });
 
       // Validate: at least one option
       if (!selected.length) {
