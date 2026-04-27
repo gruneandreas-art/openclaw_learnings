@@ -2624,14 +2624,14 @@ span.t-card__avatar {
 }
 .faq__answer-inner { overflow: hidden; }
 .faq__answer {
-  padding: var(--sp-3) var(--sp-6) var(--sp-5) calc(var(--sp-6) + 32px + var(--sp-3));
-  font-size: .9rem;
+  padding: var(--sp-4) var(--sp-6) var(--sp-6);
+  font-size: .93rem;
   color: var(--text-mid);
-  line-height: 1.75;
+  line-height: 1.8;
   border-top: 1px solid var(--border);
 }
 
 @media (max-width: 600px) {
-  .faq__answer { padding-left: var(--sp-5); }
+  .faq__answer { padding: var(--sp-4) var(--sp-4) var(--sp-5); }
   .faq__btn    { padding: var(--sp-4) var(--sp-4); }
 }
