@@ -289,7 +289,8 @@
 
     // Toggle option cards
     options.forEach(function (option) {
-      option.addEventListener('click', function () {
+      option.addEventListener('click', function (e) {
+        e.preventDefault();
         const cb = option.querySelector('.nl-option__checkbox');
         option.classList.toggle('is-active');
         cb.checked = option.classList.contains('is-active');

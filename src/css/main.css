@@ -2216,7 +2216,7 @@ span.t-card__avatar {
 
 .newsletter-section {
   background: #17282A;
-  padding: var(--sp-16) 0;
+  padding: var(--sp-10) 0;
   position: relative;
   overflow: hidden;
 }
@@ -2247,10 +2247,10 @@ span.t-card__avatar {
 }
 .newsletter-section__title {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
   font-weight: 500;
   color: #fff;
-  line-height: 1.1;
+  line-height: 1.15;
   margin-bottom: var(--sp-3);
 }
 .newsletter-section__title em {
@@ -2264,34 +2264,34 @@ span.t-card__avatar {
   margin-bottom: var(--sp-8);
 }
 
-/* --- Option cards --- */
+/* --- Option chips --- */
 .newsletter-section__options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-3);
-  margin-bottom: var(--sp-8);
-  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-6);
 }
 .nl-option {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-  padding: var(--sp-5);
-  border: 1.5px solid rgba(255,255,255,.1);
-  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .5rem 1rem .5rem .65rem;
+  border: 1.5px solid rgba(255,255,255,.12);
+  border-radius: 100px;
   cursor: pointer;
   transition: border-color var(--t), background var(--t);
-  background: rgba(255,255,255,.03);
+  background: rgba(255,255,255,.04);
   user-select: none;
   position: relative;
 }
 .nl-option:hover {
   border-color: rgba(104,169,160,.45);
-  background: rgba(104,169,160,.06);
+  background: rgba(104,169,160,.07);
 }
 .nl-option.is-active {
   border-color: var(--mint);
-  background: rgba(104,169,160,.11);
+  background: rgba(104,169,160,.13);
 }
 .nl-option__checkbox {
   position: absolute;
@@ -2299,14 +2299,9 @@ span.t-card__avatar {
   width: 0;
   height: 0;
 }
-.nl-option__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 .nl-option__icon {
-  width: 38px;
-  height: 38px;
+  width: 28px;
+  height: 28px;
   background: rgba(104,169,160,.15);
   border-radius: 50%;
   display: flex;
@@ -2315,10 +2310,16 @@ span.t-card__avatar {
   color: var(--mint);
   flex-shrink: 0;
 }
-.nl-option__icon svg { width: 18px; height: 18px; }
+.nl-option__icon svg { width: 14px; height: 14px; }
+.nl-option__title {
+  font-weight: 600;
+  color: #fff;
+  font-size: .88rem;
+  white-space: nowrap;
+}
 .nl-option__check {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border: 1.5px solid rgba(255,255,255,.2);
   border-radius: 50%;
   display: flex;
@@ -2326,24 +2327,14 @@ span.t-card__avatar {
   justify-content: center;
   transition: all var(--t);
   flex-shrink: 0;
+  margin-left: .15rem;
 }
-.nl-option__check svg { width: 12px; height: 12px; opacity: 0; transition: opacity var(--t); stroke: #fff; }
+.nl-option__check svg { width: 10px; height: 10px; opacity: 0; transition: opacity var(--t); stroke: #fff; }
 .nl-option.is-active .nl-option__check {
   background: var(--mint);
   border-color: var(--mint);
 }
 .nl-option.is-active .nl-option__check svg { opacity: 1; }
-.nl-option__title {
-  font-weight: 600;
-  color: #fff;
-  font-size: .92rem;
-  margin-bottom: .25rem;
-}
-.nl-option__text {
-  font-size: .8rem;
-  color: rgba(255,255,255,.45);
-  line-height: 1.65;
-}
 
 /* --- Form --- */
 .nl-form__field {
@@ -2442,7 +2433,6 @@ span.t-card__avatar {
 
 /* --- Responsive --- */
 @media (max-width: 600px) {
-  .newsletter-section__options { grid-template-columns: 1fr; }
   .nl-form__field {
     flex-direction: column;
     border-radius: var(--radius);
