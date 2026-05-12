@@ -191,10 +191,16 @@
     .mobile-nav a:hover{color:var(--sunrise-red)}
 
     /* Hero */
-    .hero{position:relative;min-height:100vh;background:var(--sunrise-gradient-hero);
+    .hero{position:relative;min-height:100vh;background:#0F0520;
       display:flex;align-items:center;justify-content:center;text-align:center;
       overflow:hidden;padding:var(--space-20) var(--space-6);
       padding-top:calc(64px + var(--space-20))}
+    .hero__anim-bg{position:absolute;inset:0;z-index:0;
+      background:var(--sunrise-gradient-hero);
+      animation:heroReveal 2s cubic-bezier(0.25,0.1,0.25,1) forwards}
+    @keyframes heroReveal{
+      from{opacity:0;transform:scale(1.08)}
+      to{opacity:1;transform:scale(1)}}
     .hero::before{content:'';position:absolute;top:-10%;right:-5%;
       width:600px;height:600px;border-radius:50%;background:var(--sunrise-coral);
       filter:blur(80px);opacity:.25;pointer-events:none}
@@ -441,6 +447,7 @@
 
     <!-- HERO -->
     <section class="hero" id="home">
+      <div class="hero__anim-bg" id="heroAnimBg"></div>
       <div class="hero__grid"></div>
       <div class="hero__content">
         <span class="hero__tag">OpenClaw · Business Experience</span>
@@ -804,6 +811,31 @@
   </footer>
 
   <script>
+    // Animated radial gradient background (translated from AnimatedGradientBackground component)
+    (function initHeroGradient() {
+      const bg = document.getElementById('heroAnimBg');
+      if (!bg) return;
+
+      const colors  = ['#FF8050', '#FF6B35', '#E8174A', '#C9006A', '#8B1A8C', '#4A0070', '#0F0520'];
+      const stops   = [5, 18, 36, 54, 70, 86, 100];
+      const base    = 120;
+      const range   = 7;
+      const speed   = 0.022;
+      let w = base;
+      let dir = 1;
+
+      function frame() {
+        if (w >= base + range) dir = -1;
+        if (w <= base - range) dir = 1;
+        w += dir * speed;
+        const s = stops.map((p, i) => `${colors[i]} ${p}%`).join(', ');
+        bg.style.background = `radial-gradient(${w}% ${(w * 0.85).toFixed(1)}% at 50% 15%, ${s})`;
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    })();
+
     // Theme toggle (in-memory only)
     let dark = false;
     document.getElementById('themeToggle').addEventListener('click', () => {
