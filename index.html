@@ -233,16 +233,16 @@
       background:var(--color-surface);border:1px solid var(--color-border);
       box-shadow:var(--shadow-sm);transition:var(--transition)}
     .photo-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
-    .photo-card__media{position:relative;aspect-ratio:16/9;overflow:hidden;
+    .photo-card__media{position:relative;aspect-ratio:9/16;overflow:hidden;
       background:var(--color-surface-2)}
-    .photo-card__media img{width:100%;height:100%;object-fit:cover}
+    .photo-card__media img{width:100%;height:100%;object-fit:cover;object-position:top}
     .photo-card__media img[src="#"]{display:none}
     .photo-card__media img[src="#"]~.photo-ph{display:flex !important}
     .photo-card__tag{position:absolute;top:var(--space-3);left:var(--space-3);z-index:2}
     .tag-pill{display:inline-block;padding:3px 10px;border-radius:var(--radius-full);
       background:rgba(15,21,35,.7);backdrop-filter:blur(4px);
       font-size:.6875rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:white}
-    .photo-ph{width:100%;aspect-ratio:16/9;
+    .photo-ph{width:100%;aspect-ratio:9/16;
       background:linear-gradient(135deg,#F2F4F7 0%,#E8EBF0 100%);
       display:none;flex-direction:column;align-items:center;justify-content:center;
       gap:var(--space-2);color:var(--color-text-faint);font-size:.875rem;font-weight:500}
@@ -471,50 +471,101 @@
         </div>
 
         <div class="grid-3">
-          <!-- PHOTO 1: Replace src="#" with your image path -->
           <div class="photo-card reveal-on-scroll">
             <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Telegram</span></span>
-              <img src="#" alt="Telegram Bot Interface">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Telegram Bot Interface</span></div>
+              <span class="photo-card__tag"><span class="tag-pill">Erste Schritte</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7513.PNG" alt="Erste Test-Nachrichten an Sunny" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Erste Schritte</span></div>
             </div>
-            <p class="photo-card__caption">Chatting with my AI via Telegram, just like WhatsApp</p>
+            <p class="photo-card__caption">Tag 1: «Hi», «Ping», «Test» — Sunny antwortet zum ersten Mal</p>
           </div>
-          <!-- PHOTO 2: Replace src="#" with your image path -->
           <div class="photo-card reveal-on-scroll" style="transition-delay:80ms">
             <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Telegram</span></span>
-              <img src="#" alt="Telegram Bot Response">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Telegram Bot Response</span></div>
+              <span class="photo-card__tag"><span class="tag-pill">Live Data</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7515.PNG" alt="Wetterdaten für Dübendorf live abgerufen" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Live Data</span></div>
             </div>
-            <p class="photo-card__caption">The bot answering a real question from my phone</p>
+            <p class="photo-card__caption">Wetterdaten für Dübendorf — trotz Tool-Fehler im ersten Anlauf</p>
           </div>
-          <!-- PHOTO 3: Replace src="#" with your image path -->
           <div class="photo-card reveal-on-scroll" style="transition-delay:160ms">
             <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Dashboard</span></span>
-              <img src="#" alt="OpenClaw Dashboard">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>OpenClaw Dashboard</span></div>
+              <span class="photo-card__tag"><span class="tag-pill">Skills</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7514.PNG" alt="Sunny entdeckt ClawHub Skills" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Skills</span></div>
             </div>
-            <p class="photo-card__caption">The control panel where I manage agents and skills</p>
+            <p class="photo-card__caption">Sunny entdeckt ClawHub — neue Skills direkt per Textnachricht installieren</p>
           </div>
-          <!-- PHOTO 4: Replace src="#" with your image path -->
           <div class="photo-card reveal-on-scroll" style="transition-delay:240ms">
             <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">WordPress</span></span>
-              <img src="#" alt="WordPress Integration">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>WordPress Integration</span></div>
+              <span class="photo-card__tag"><span class="tag-pill">Voice</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7520.PNG" alt="Telegram Voice Skill installiert" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Voice</span></div>
             </div>
-            <p class="photo-card__caption">AI-assisted content being pushed directly to my website</p>
+            <p class="photo-card__caption">telegram-voice installiert — Sprachnachrichten werden jetzt verarbeitet</p>
           </div>
-          <!-- PHOTO 5: Replace src="#" with your image path -->
           <div class="photo-card reveal-on-scroll" style="transition-delay:320ms">
             <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">GitHub</span></span>
-              <img src="#" alt="GitHub Workflow">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>GitHub Workflow</span></div>
+              <span class="photo-card__tag"><span class="tag-pill">KI-Wissen</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7522.PNG" alt="Ontology Skill installiert" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>KI-Wissen</span></div>
             </div>
-            <p class="photo-card__caption">Code changes reviewed and committed by the AI agent</p>
+            <p class="photo-card__caption">Ontology-Skill aktiv — Sunny merkt sich Projekte, Aufgaben, Beziehungen</p>
+          </div>
+          <div class="photo-card reveal-on-scroll" style="transition-delay:400ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">Self-Improving</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7521.PNG" alt="Sunny erklärt sein Self-Improving System" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Self-Improving</span></div>
+            </div>
+            <p class="photo-card__caption">«Ja, ich habe ein Self-Improving System» — corrections.md und memory.md</p>
+          </div>
+          <div class="photo-card reveal-on-scroll" style="transition-delay:80ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">Research</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7519.PNG" alt="Nahost-News live recherchiert" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Research</span></div>
+            </div>
+            <p class="photo-card__caption">Nahost-News live recherchiert: USA/Iran-Waffenruhe direkt aus der Tagesschau</p>
+          </div>
+          <div class="photo-card reveal-on-scroll" style="transition-delay:160ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">Web Dev</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7532.PNG" alt="Sunny baut die Face Art Zürich Website" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Web Dev</span></div>
+            </div>
+            <p class="photo-card__caption">Sunny baut die Face Art Zürich Website — liest alle Seiten, wählt 16 Bilder</p>
+          </div>
+          <div class="photo-card reveal-on-scroll" style="transition-delay:240ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">Deploy</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7535.PNG" alt="Face Art Galerie live mit 12 Bildern" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Deploy</span></div>
+            </div>
+            <p class="photo-card__caption">Galerie live mit 12 Bildern — Screenshot als Beweis direkt im Chat</p>
+          </div>
+          <div class="photo-card reveal-on-scroll" style="transition-delay:320ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">Real Talk</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7537.PNG" alt="API-Billing-Fehler, Modell gewechselt" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Real Talk</span></div>
+            </div>
+            <p class="photo-card__caption">Credits leer, Modell auf Kimi 2.5 gewechselt — und einfach weitergemacht</p>
+          </div>
+          <div class="photo-card reveal-on-scroll" style="transition-delay:400ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">Planning</span></span>
+              <img src="BIlder_Open%20Claw/IMG_7534.PNG" alt="Phase 1 Roadmap geplant" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Planning</span></div>
+            </div>
+            <p class="photo-card__caption">Phase 1 Roadmap: Architekt, UX-Agent, GitHub Issues — Sunny plant selbst mit</p>
+          </div>
+          <div class="photo-card reveal-on-scroll" style="transition-delay:80ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">Ehrlichkeit</span></span>
+              <img src="BIlder_Open%20Claw/PHOTO-2026-05-10-22-20-25.jpg" alt="Sunny gesteht: heute nichts Produktives gemacht" loading="lazy">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Ehrlichkeit</span></div>
+            </div>
+            <p class="photo-card__caption">«Heute nichts Produktives gemacht.» — Sunny bleibt ehrlich, auch wenn es unbequem ist</p>
           </div>
         </div>
 
