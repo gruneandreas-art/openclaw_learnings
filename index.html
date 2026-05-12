@@ -398,10 +398,10 @@
 
     /* Interactive Accordion – Journey */
     .ia-wrap{max-width:960px;margin:0 auto var(--space-10)}
-    .ia{display:flex;height:440px;border-radius:var(--radius-lg);overflow:hidden;gap:3px;background:#0c0820}
+    .ia{display:flex;height:580px;border-radius:var(--radius-lg);overflow:hidden;gap:3px;background:#0c0820}
     .ia-panel{
       position:relative;flex:1 1 0%;overflow:hidden;cursor:pointer;
-      background-size:cover;background-position:top center;background-color:#0c0820;
+      background-color:#0c0820;
       border:2px solid #1e1230;
       opacity:0;transform:translateX(-50px);
       transition:flex .7s cubic-bezier(.4,0,.2,1),box-shadow .7s,border-color .4s,
@@ -409,10 +409,15 @@
     .ia-panel.ia--visible{opacity:1;transform:translateX(0)}
     .ia-panel.ia--active{flex:6 1 0%;border-color:var(--sunrise-coral);
       box-shadow:0 20px 60px rgba(0,0,0,.5);z-index:2}
+    .ia-panel__img{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;object-position:top center}
+    .ia-panel.ia--active .ia-panel__img{
+      object-fit:contain;object-position:center top}
     .ia-panel__shade{position:absolute;inset:0;pointer-events:none;
       background:rgba(0,0,0,.52);transition:background .7s}
     .ia-panel.ia--active .ia-panel__shade{
-      background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.15) 55%,transparent 100%)}
+      background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 40%)}
     .ia-panel__label{position:absolute;left:0;right:0;bottom:14px;
       display:flex;align-items:center;gap:10px;padding:0 14px;z-index:3}
     .ia-panel__icon{min-width:38px;height:38px;display:flex;align-items:center;justify-content:center;
@@ -427,7 +432,8 @@
     @media(max-width:640px){
       .ia{flex-direction:column;height:auto}
       .ia-panel{flex:none!important;height:70px;opacity:1!important;transform:none!important}
-      .ia-panel.ia--active{height:250px}
+      .ia-panel.ia--active{height:380px}
+      .ia-panel.ia--active .ia-panel__img{object-fit:contain}
       .ia-panel__title,.ia-panel__sub{white-space:normal}
     }
 
@@ -530,7 +536,8 @@
         <div class="ia-wrap reveal-on-scroll">
           <div class="ia" id="journeyAccordion">
 
-            <div class="ia-panel ia--active" style="background-image:url('BIlder_Open%20Claw/IMG_7513.PNG')">
+            <div class="ia-panel ia--active">
+              <img class="ia-panel__img" src="BIlder_Open%20Claw/IMG_7513.PNG" alt="Day One — erste Nachrichten an Sunny" loading="lazy">
               <div class="ia-panel__shade"></div>
               <div class="ia-panel__label">
                 <div class="ia-panel__icon">🚀</div>
@@ -541,7 +548,8 @@
               </div>
             </div>
 
-            <div class="ia-panel" style="background-image:url('BIlder_Open%20Claw/IMG_7515.PNG')">
+            <div class="ia-panel">
+              <img class="ia-panel__img" src="BIlder_Open%20Claw/IMG_7515.PNG" alt="Wetterdaten Dübendorf live" loading="lazy">
               <div class="ia-panel__shade"></div>
               <div class="ia-panel__label">
                 <div class="ia-panel__icon">🌤️</div>
@@ -552,7 +560,8 @@
               </div>
             </div>
 
-            <div class="ia-panel" style="background-image:url('BIlder_Open%20Claw/IMG_7521.PNG')">
+            <div class="ia-panel">
+              <img class="ia-panel__img" src="BIlder_Open%20Claw/IMG_7521.PNG" alt="Sunny Self-Improving System" loading="lazy">
               <div class="ia-panel__shade"></div>
               <div class="ia-panel__label">
                 <div class="ia-panel__icon">🧠</div>
@@ -563,7 +572,8 @@
               </div>
             </div>
 
-            <div class="ia-panel" style="background-image:url('BIlder_Open%20Claw/IMG_7532.PNG')">
+            <div class="ia-panel">
+              <img class="ia-panel__img" src="BIlder_Open%20Claw/IMG_7532.PNG" alt="Sunny baut Website via Telegram" loading="lazy">
               <div class="ia-panel__shade"></div>
               <div class="ia-panel__label">
                 <div class="ia-panel__icon">💻</div>
@@ -574,7 +584,8 @@
               </div>
             </div>
 
-            <div class="ia-panel" style="background-image:url('BIlder_Open%20Claw/IMG_7537.PNG')">
+            <div class="ia-panel">
+              <img class="ia-panel__img" src="BIlder_Open%20Claw/IMG_7537.PNG" alt="API leer, Modell gewechselt" loading="lazy">
               <div class="ia-panel__shade"></div>
               <div class="ia-panel__label">
                 <div class="ia-panel__icon">⚡</div>
