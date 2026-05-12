@@ -396,45 +396,35 @@
       .grid-4{grid-template-columns:repeat(2,1fr)}
     }
 
-    /* Interactive Accordion – Journey */
-    .ia-wrap{max-width:960px;margin:0 auto var(--space-10)}
-    .ia{display:flex;height:580px;border-radius:var(--radius-lg);overflow:hidden;gap:3px;background:#0c0820}
-    .ia-panel{
-      position:relative;flex:1 1 0%;overflow:hidden;cursor:pointer;
-      background-color:#0c0820;
-      border:2px solid #1e1230;
-      opacity:0;transform:translateX(-50px);
-      transition:flex .7s cubic-bezier(.4,0,.2,1),box-shadow .7s,border-color .4s,
-                 opacity .5s ease,transform .5s ease}
-    .ia-panel.ia--visible{opacity:1;transform:translateX(0)}
-    .ia-panel.ia--active{flex:6 1 0%;border-color:var(--sunrise-coral);
-      box-shadow:0 20px 60px rgba(0,0,0,.5);z-index:2}
-    .ia-panel__img{
+    /* Image Accordion – Journey */
+    .acc-track{overflow-x:auto;padding:4px 0 14px;-webkit-overflow-scrolling:touch;
+      scrollbar-width:thin;scrollbar-color:rgba(255,107,53,.35) transparent}
+    .acc-track::-webkit-scrollbar{height:3px}
+    .acc-track::-webkit-scrollbar-thumb{background:rgba(255,107,53,.35);border-radius:2px}
+    .acc-row{display:flex;flex-direction:row;gap:5px;align-items:stretch;min-width:min-content;padding:2px}
+    .acc-item{
+      position:relative;height:clamp(380px,55vh,650px);border-radius:14px;overflow:hidden;
+      flex-shrink:0;cursor:pointer;width:62px;
+      transition:width .65s cubic-bezier(.4,0,.2,1),box-shadow .5s}
+    .acc-item.acc--active{width:340px;box-shadow:0 16px 48px rgba(0,0,0,.45)}
+    .acc-item img{
       position:absolute;inset:0;width:100%;height:100%;
-      object-fit:cover;object-position:top center}
-    .ia-panel.ia--active .ia-panel__img{
-      object-fit:contain;object-position:center top}
-    .ia-panel__shade{position:absolute;inset:0;pointer-events:none;
-      background:rgba(0,0,0,.52);transition:background .7s}
-    .ia-panel.ia--active .ia-panel__shade{
-      background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 40%)}
-    .ia-panel__label{position:absolute;left:0;right:0;bottom:14px;
-      display:flex;align-items:center;gap:10px;padding:0 14px;z-index:3}
-    .ia-panel__icon{min-width:38px;height:38px;display:flex;align-items:center;justify-content:center;
-      border-radius:50%;background:rgba(15,5,35,.85);backdrop-filter:blur(8px);
-      border:1.5px solid rgba(255,107,53,.5);font-size:1.125rem;flex-shrink:0}
-    .ia-panel__title{font-weight:700;font-size:.9375rem;color:white;white-space:nowrap;line-height:1.3;
-      opacity:0;transform:translateX(20px);transition:opacity .6s ease,transform .6s ease}
-    .ia-panel__sub{font-size:.75rem;color:rgba(255,255,255,.72);white-space:nowrap;line-height:1.3;
-      opacity:0;transform:translateX(20px);transition:opacity .6s .07s ease,transform .6s .07s ease}
-    .ia-panel.ia--active .ia-panel__title,
-    .ia-panel.ia--active .ia-panel__sub{opacity:1;transform:translateX(0)}
+      object-fit:cover;object-position:top center;
+      pointer-events:none}
+    .acc-item__overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);transition:background .5s;pointer-events:none}
+    .acc-item.acc--active .acc-item__overlay{
+      background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.08) 55%,transparent 100%)}
+    .acc-item__label{
+      position:absolute;bottom:20px;left:50%;z-index:2;
+      color:white;font-size:.875rem;font-weight:700;white-space:nowrap;
+      text-shadow:0 1px 6px rgba(0,0,0,.7);letter-spacing:.02em;
+      transform:translateX(-50%) rotate(90deg);
+      transition:transform .45s cubic-bezier(.4,0,.2,1),bottom .45s ease,opacity .3s}
+    .acc-item.acc--active .acc-item__label{
+      transform:translateX(-50%) rotate(0deg);bottom:22px}
     @media(max-width:640px){
-      .ia{flex-direction:column;height:auto}
-      .ia-panel{flex:none!important;height:70px;opacity:1!important;transform:none!important}
-      .ia-panel.ia--active{height:380px}
-      .ia-panel.ia--active .ia-panel__img{object-fit:contain}
-      .ia-panel__title,.ia-panel__sub{white-space:normal}
+      .acc-item{height:260px;width:42px}
+      .acc-item.acc--active{width:220px}
     }
 
     /* Live Preview – Possibilities */
@@ -533,67 +523,127 @@
           <p class="section-description">Before I explain what OpenClaw is, let me show you what I actually built. Over the past few months I set up a private AI assistant running on my own server — connected to Telegram, WordPress, and GitHub. These are a few snapshots from that journey.</p>
         </div>
 
-        <div class="ia-wrap reveal-on-scroll">
-          <div class="ia" id="journeyAccordion">
+        <div class="acc-track reveal-on-scroll">
+          <div class="acc-row" id="journeyAccordion">
 
-            <div class="ia-panel ia--active">
-              <img class="ia-panel__img" src="BIlder_Open%20Claw/IMG_7513.PNG" alt="Day One — erste Nachrichten an Sunny" loading="lazy">
-              <div class="ia-panel__shade"></div>
-              <div class="ia-panel__label">
-                <div class="ia-panel__icon">🚀</div>
-                <div>
-                  <div class="ia-panel__title">Day One</div>
-                  <div class="ia-panel__sub">Hi, Ping, Test — Sunny antwortet</div>
-                </div>
-              </div>
+            <div class="acc-item acc--active">
+              <img src="BIlder_Open%20Claw/IMG_7513.PNG" alt="Day One" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Day One</span>
             </div>
 
-            <div class="ia-panel">
-              <img class="ia-panel__img" src="BIlder_Open%20Claw/IMG_7515.PNG" alt="Wetterdaten Dübendorf live" loading="lazy">
-              <div class="ia-panel__shade"></div>
-              <div class="ia-panel__label">
-                <div class="ia-panel__icon">🌤️</div>
-                <div>
-                  <div class="ia-panel__title">Live Data</div>
-                  <div class="ia-panel__sub">Wetter Dübendorf in Echtzeit</div>
-                </div>
-              </div>
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7512.PNG" alt="Bot Setup" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Bot Setup</span>
             </div>
 
-            <div class="ia-panel">
-              <img class="ia-panel__img" src="BIlder_Open%20Claw/IMG_7521.PNG" alt="Sunny Self-Improving System" loading="lazy">
-              <div class="ia-panel__shade"></div>
-              <div class="ia-panel__label">
-                <div class="ia-panel__icon">🧠</div>
-                <div>
-                  <div class="ia-panel__title">Self-Improving</div>
-                  <div class="ia-panel__sub">Lernt aus Korrekturen automatisch</div>
-                </div>
-              </div>
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7514.PNG" alt="Skill Discovery" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Skill Discovery</span>
             </div>
 
-            <div class="ia-panel">
-              <img class="ia-panel__img" src="BIlder_Open%20Claw/IMG_7532.PNG" alt="Sunny baut Website via Telegram" loading="lazy">
-              <div class="ia-panel__shade"></div>
-              <div class="ia-panel__label">
-                <div class="ia-panel__icon">💻</div>
-                <div>
-                  <div class="ia-panel__title">Web Dev</div>
-                  <div class="ia-panel__sub">Website bauen via Telegram</div>
-                </div>
-              </div>
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7515.PNG" alt="Live Weather" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Live Weather</span>
             </div>
 
-            <div class="ia-panel">
-              <img class="ia-panel__img" src="BIlder_Open%20Claw/IMG_7537.PNG" alt="API leer, Modell gewechselt" loading="lazy">
-              <div class="ia-panel__shade"></div>
-              <div class="ia-panel__label">
-                <div class="ia-panel__icon">⚡</div>
-                <div>
-                  <div class="ia-panel__title">Real Talk</div>
-                  <div class="ia-panel__sub">API leer? Modell wechseln, weiter</div>
-                </div>
-              </div>
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7516.PNG" alt="Forecast" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Forecast</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7517.PNG" alt="Voice Security" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Voice Security</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7518.PNG" alt="Server Monitor" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Server Monitor</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7519.PNG" alt="News Research" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">News Research</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7520.PNG" alt="Voice Install" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Voice Install</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7521.PNG" alt="Self-Improving" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Self-Improving</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7522.PNG" alt="Ontology Skill" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Ontology Skill</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7532.PNG" alt="Website Build" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Website Build</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7533.PNG" alt="Improvements" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Improvements</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7534.PNG" alt="Phase 1 Plan" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Phase 1 Plan</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7535.PNG" alt="Gallery Live" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Gallery Live</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7536.PNG" alt="WordPress Deploy" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">WordPress Deploy</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7537.PNG" alt="API Switch" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">API Switch</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/IMG_7538.PNG" alt="Agent Roles" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Agent Roles</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/PHOTO-2026-05-10-22-20-25.jpg" alt="Honest Moment" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Honest Moment</span>
+            </div>
+
+            <div class="acc-item">
+              <img src="BIlder_Open%20Claw/PHOTO-2026-05-10-22-20-25%202.jpg" alt="Reset Day" loading="lazy">
+              <div class="acc-item__overlay"></div>
+              <span class="acc-item__label">Reset Day</span>
             </div>
 
           </div>
@@ -972,16 +1022,19 @@
     }, { threshold: 0.4 });
     document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
 
-    // Interactive accordion – Journey
+    // Image accordion – Journey
     (function initAccordion() {
-      const panels = document.querySelectorAll('#journeyAccordion .ia-panel');
-      if (!panels.length) return;
-      panels.forEach((panel, i) => {
-        panel.addEventListener('click', () => {
-          panels.forEach(p => p.classList.remove('ia--active'));
-          panel.classList.add('ia--active');
-        });
-        setTimeout(() => panel.classList.add('ia--visible'), 150 * i);
+      const items = document.querySelectorAll('#journeyAccordion .acc-item');
+      if (!items.length) return;
+      function activate(item) {
+        items.forEach(i => i.classList.remove('acc--active'));
+        item.classList.add('acc--active');
+        // scroll active item into comfortable view
+        item.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+      }
+      items.forEach(item => {
+        item.addEventListener('mouseenter', () => activate(item));
+        item.addEventListener('click',      () => activate(item));
       });
     })();
   </script>
