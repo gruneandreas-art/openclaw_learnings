@@ -1,507 +1,859 @@
+<!--
+=============================================================
+  OpenClaw Presentation Website
+  Design: Sunrise.ch visual language
+  Built with: Claude Code + vanilla HTML/CSS/JS
+  Hosted on: GitHub Pages
+=============================================================
+
+  DEPLOYMENT – GitHub Pages (4 steps):
+  1. Create new repository on GitHub (e.g. "openclaw-presentation")
+  2. Upload this index.html to the root of the repository
+  3. Go to: Settings → Pages → Source: Deploy from branch → main → / (root)
+  4. Live at: https://[your-username].github.io/openclaw-presentation
+
+  SWAP IN YOUR PHOTOS – find these comments in Section 1:
+  • <!-- PHOTO 1 --> alt="Telegram Bot Interface"
+  • <!-- PHOTO 2 --> alt="Telegram Bot Response"
+  • <!-- PHOTO 3 --> alt="OpenClaw Dashboard"
+  • <!-- PHOTO 4 --> alt="WordPress Integration"
+  • <!-- PHOTO 5 --> alt="GitHub Workflow"
+  Replace src="#" with your file path, e.g. src="photos/telegram-1.jpg"
+=============================================================
+-->
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kinderschminken Zürich & Dübendorf | Face Art Zürich</title>
-  <meta name="description" content="Professionelles Kinderschminken & Face Art in Zürich und Dübendorf. Isa kommt direkt zu eurem Event — Geburtstage, Hochzeiten & Firmenfeiern. Ab CHF 145/h. Jetzt anfragen!">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Isa, Face Art Zürich">
-  <meta name="theme-color" content="#68A9A0">
-  <link rel="canonical" href="https://www.faceartzuerich.ch/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Experience · From Curious to Connected</title>
+  <meta name="description" content="How I built a private AI infrastructure – and what it means for how we work.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sunrise-gradient:        linear-gradient(135deg, #FF6B35 0%, #E8174A 45%, #C9006A 100%);
+      --sunrise-gradient-soft:   linear-gradient(135deg, #FF8C61 0%, #F03E6E 50%, #D4338A 100%);
+      --sunrise-gradient-hero:   linear-gradient(160deg, #FF6B35 0%, #E8174A 40%, #8B1A8C 100%);
+      --sunrise-gradient-subtle: linear-gradient(135deg, #FFF0EC 0%, #FFE4EE 100%);
+      --sunrise-coral:   #FF6B35;
+      --sunrise-red:     #E8174A;
+      --sunrise-magenta: #C9006A;
+      --sunrise-purple:  #8B1A8C;
+      --color-bg:          #FFFFFF;
+      --color-bg-soft:     #F7F8FA;
+      --color-surface:     #FFFFFF;
+      --color-surface-2:   #F2F4F7;
+      --color-border:      #E4E7EC;
+      --color-border-soft: #F0F2F5;
+      --color-text:        #0F1523;
+      --color-text-muted:  #5C6478;
+      --color-text-faint:  #9BA3B4;
+      --color-success:     #00875A;
+      --color-error:       #DE350B;
+      --shadow-sm:  0 1px 3px rgba(15,21,35,.08),0 1px 2px rgba(15,21,35,.04);
+      --shadow-md:  0 4px 16px rgba(15,21,35,.10),0 2px 4px rgba(15,21,35,.06);
+      --shadow-lg:  0 12px 40px rgba(15,21,35,.12),0 4px 8px rgba(15,21,35,.06);
+      --shadow-glow:0 8px 32px rgba(232,23,74,.20);
+      --space-1:4px;  --space-2:8px;   --space-3:12px;
+      --space-4:16px; --space-5:20px;  --space-6:24px;
+      --space-8:32px; --space-10:40px; --space-12:48px;
+      --space-16:64px;--space-20:80px; --space-24:96px;
+      --radius-sm:6px; --radius-md:12px; --radius-lg:20px;
+      --radius-xl:28px; --radius-full:9999px;
+      --transition:200ms cubic-bezier(.16,1,.3,1);
+      --transition-slow:400ms cubic-bezier(.16,1,.3,1);
+      --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    }
+    [data-theme="dark"] {
+      --color-bg:         #0F1523;
+      --color-bg-soft:    #161C2E;
+      --color-surface:    #1C2236;
+      --color-surface-2:  #232A40;
+      --color-border:     #2E3650;
+      --color-border-soft:#242D45;
+      --color-text:       #EDF0F7;
+      --color-text-muted: #8A94AB;
+      --color-text-faint: #545E78;
+      --shadow-sm:0 1px 3px rgba(0,0,0,.3);
+      --shadow-md:0 4px 16px rgba(0,0,0,.35);
+      --shadow-lg:0 12px 40px rgba(0,0,0,.4);
+    }
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="de_CH">
-  <meta property="og:url" content="https://www.faceartzuerich.ch/">
-  <meta property="og:title" content="Kinderschminken Zürich & Dübendorf | Face Art Zürich">
-  <meta property="og:description" content="Professionelles Kinderschminken & Face Art in Zürich und Dübendorf. Isa kommt direkt zu eurem Event — Geburtstage, Hochzeiten & Firmenfeiern. Ab CHF 145/h.">
-  <meta property="og:image" content="https://www.faceartzuerich.ch/src/images/gallery/Kinder/einhorn-drachen-kinderschminken-zuerich.jpg">
-  <meta property="og:image:width" content="800">
-  <meta property="og:image:height" content="800">
-  <meta property="og:site_name" content="Face Art Zürich">
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);background:var(--color-bg);color:var(--color-text);
+         line-height:1.6;overflow-x:hidden;
+         transition:background var(--transition-slow),color var(--transition-slow)}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    ul,ol{list-style:none}
+    button{font-family:inherit}
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kinderschminken Zürich & Dübendorf | Face Art Zürich">
-  <meta name="twitter:description" content="Professionelles Kinderschminken & Face Art in Zürich und Dübendorf. Ab CHF 145/h.">
-  <meta name="twitter:image" content="https://www.faceartzuerich.ch/src/images/gallery/Kinder/einhorn-drachen-kinderschminken-zuerich.jpg">
-  <link rel="stylesheet" href="src/css/main.css" />
-  <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "LocalBusiness",
-        "@id": "https://www.faceartzuerich.ch/#business",
-        "name": "Face Art Zürich",
-        "description": "Professionelles Kinderschminken und Face Art in Zürich und Dübendorf. Isa kommt direkt zu Ihrem Event — Geburtstage, Hochzeiten, Firmenfeiern und Weihnachtsmärkte.",
-        "url": "https://www.faceartzuerich.ch/",
-        "telephone": "+41764394928",
-        "email": "faceartzuerich@yahoo.com",
-        "priceRange": "CHF 145/h",
-        "currenciesAccepted": "CHF",
-        "paymentAccepted": "Cash, Bank Transfer",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Glärnischstrasse",
-          "addressLocality": "Dübendorf",
-          "postalCode": "8600",
-          "addressCountry": "CH"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 47.3964,
-          "longitude": 8.6178
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Zürich" },
-          { "@type": "City", "name": "Dübendorf" },
-          { "@type": "City", "name": "Winterthur" },
-          { "@type": "City", "name": "Uster" },
-          { "@type": "City", "name": "Kloten" }
-        ],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Face Art Dienstleistungen",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": { "@type": "Service", "name": "Kinderschminken" },
-              "priceSpecification": { "@type": "PriceSpecification", "price": "145", "priceCurrency": "CHF", "unitText": "Stunde" }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": { "@type": "Service", "name": "Face Art für Hochzeiten" }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": { "@type": "Service", "name": "Face Art für Unternehmen und Events" }
-            }
-          ]
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5",
-          "bestRating": "5",
-          "worstRating": "1",
-          "reviewCount": "6"
-        },
-        "review": [
-          {
-            "@type": "Review",
-            "author": { "@type": "Person", "name": "Lisa H." },
-            "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-            "reviewBody": "Wir sind mehr als begeistert! Isa ist eine super herzliche Person und unsere Kleine war mega happy mit dem tollen Einhorn. Immer wieder gerne!"
-          },
-          {
-            "@type": "Review",
-            "author": { "@type": "Person", "name": "Lisa Fuchs" },
-            "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-            "reviewBody": "Isa hat für uns am 3. Geburtstag meiner Tochter geschminkt. Sie zaubert mit ihren tollen Motiven jedem Kind ein Lachen ins Gesicht. Ich kann sie wärmstens empfehlen."
-          },
-          {
-            "@type": "Review",
-            "author": { "@type": "Person", "name": "Claudia Vetsch" },
-            "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-            "reviewBody": "Isa hat bei uns an einem Kinderfest ganz viele Kinder glücklich gemacht! Sie hat einen super Draht zu Kindern und arbeitet sehr zügig — alle wurden bedient."
-          }
-        ],
-        "image": "https://www.faceartzuerich.ch/src/images/isa-face-art-zuerich.jpg",
-        "sameAs": []
-      },
-      {
-        "@type": "Person",
-        "@id": "https://www.faceartzuerich.ch/#isa",
-        "name": "Isa",
-        "jobTitle": "Face Art Künstlerin",
-        "worksFor": { "@id": "https://www.faceartzuerich.ch/#business" },
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Dübendorf",
-          "addressCountry": "CH"
-        }
-      }
-    ]
-  }
-  </script>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+    /* Layout */
+    .container{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+    .section{padding:clamp(48px,8vw,96px) 0;background:var(--color-bg)}
+    .section--soft{background:var(--color-bg-soft)}
+    .section-intro{text-align:center;max-width:720px;margin:0 auto var(--space-12)}
+    .section-label{
+      font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      background:var(--sunrise-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;
+      display:inline-block;margin-bottom:var(--space-3)}
+    .section-heading{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;
+      color:var(--color-text);line-height:1.2;margin-bottom:var(--space-4)}
+    .section-description{font-size:1rem;color:var(--color-text-muted);line-height:1.7}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6)}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-5)}
+
+    /* Components */
+    .card{background:var(--color-surface);border:1px solid var(--color-border);
+      border-radius:var(--radius-lg);padding:var(--space-8);
+      box-shadow:var(--shadow-sm);transition:var(--transition)}
+    .card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+
+    .btn-ghost{display:inline-flex;align-items:center;gap:var(--space-2);
+      padding:14px 28px;background:transparent;color:white;font-weight:700;
+      font-size:.9375rem;border:2px solid rgba(255,255,255,.6);
+      border-radius:var(--radius-full);cursor:pointer;transition:var(--transition);text-decoration:none}
+    .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:white}
+
+    .btn-white{display:inline-flex;align-items:center;gap:var(--space-2);
+      padding:14px 28px;background:white;border:none;border-radius:var(--radius-full);
+      font-size:.9375rem;font-weight:700;cursor:pointer;transition:var(--transition);text-decoration:none}
+    .btn-white span{background:var(--sunrise-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text}
+    .btn-white:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+
+    .pill{display:inline-block;padding:4px 14px;border-radius:var(--radius-full);
+      background:var(--sunrise-gradient-subtle);font-size:.75rem;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--sunrise-red)}
+
+    .callout{background:linear-gradient(135deg,#FFF5F0 0%,#FFF0F5 100%);
+      border-left:3px solid var(--sunrise-coral);
+      border-radius:0 var(--radius-md) var(--radius-md) 0;
+      padding:var(--space-5) var(--space-6)}
+    [data-theme="dark"] .callout{
+      background:linear-gradient(135deg,rgba(255,107,53,.1) 0%,rgba(232,23,74,.08) 100%)}
+
+    .pull-quote{padding-left:var(--space-6);margin:var(--space-8) 0;
+      font-style:italic;font-size:1.125rem;color:var(--color-text-muted);
+      border-left:3px solid var(--sunrise-coral)}
+
+    .icon-circle{width:56px;height:56px;border-radius:50%;
+      background:var(--sunrise-gradient-subtle);display:flex;align-items:center;
+      justify-content:center;font-size:1.5rem;margin-bottom:var(--space-4);flex-shrink:0}
+
+    /* Scroll reveal */
+    .reveal-on-scroll{opacity:0;transform:translateY(24px);
+      transition:opacity .5s ease,transform .5s ease}
+    .reveal-on-scroll.visible{opacity:1;transform:translateY(0)}
+
+    /* Header */
+    .header{position:fixed;top:0;left:0;right:0;height:64px;
+      background:var(--color-bg);border-bottom:1px solid var(--color-border);
+      z-index:1000;transition:background var(--transition-slow)}
+    .header__inner{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,48px);
+      height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--space-8)}
+    .header__logo{display:flex;align-items:center;gap:var(--space-3);
+      text-decoration:none;flex-shrink:0}
+    .header__logo-text{font-size:1rem;font-weight:700;color:var(--color-text)}
+    .header__nav{display:flex;align-items:center;gap:var(--space-1);flex:1;justify-content:center}
+    .nav-link{font-size:.9375rem;font-weight:600;color:var(--color-text);
+      padding:var(--space-2) var(--space-3);border-radius:var(--radius-sm);
+      transition:var(--transition);position:relative;text-decoration:none}
+    .nav-link::after{content:'';position:absolute;bottom:0;
+      left:var(--space-3);right:var(--space-3);height:2px;
+      background:var(--sunrise-gradient);border-radius:1px;
+      transform:scaleX(0);transform-origin:left;transition:transform var(--transition)}
+    .nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+    .nav-link.active{background:var(--sunrise-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text}
+    .header__actions{display:flex;align-items:center;gap:var(--space-3);flex-shrink:0}
+    .theme-toggle{background:var(--color-surface-2);border:1px solid var(--color-border);
+      border-radius:var(--radius-full);padding:var(--space-2) var(--space-3);cursor:pointer;
+      font-size:.875rem;font-weight:500;color:var(--color-text-muted);transition:var(--transition)}
+    .theme-toggle:hover{border-color:var(--sunrise-coral);color:var(--sunrise-coral)}
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;
+      cursor:pointer;padding:var(--space-2);min-width:44px;min-height:44px;
+      align-items:center;justify-content:center}
+    .hamburger span{display:block;width:24px;height:2px;
+      background:var(--sunrise-red);border-radius:1px;transition:var(--transition)}
+    .mobile-nav{display:none;position:fixed;top:64px;left:0;right:0;
+      background:var(--color-bg);border-bottom:1px solid var(--color-border);
+      z-index:999;flex-direction:column;box-shadow:var(--shadow-md)}
+    .mobile-nav.open{display:flex}
+    .mobile-nav a{padding:0 clamp(16px,4vw,48px);height:48px;display:flex;align-items:center;
+      font-size:.9375rem;font-weight:600;color:var(--color-text);
+      border-bottom:1px solid var(--color-border-soft);transition:var(--transition)}
+    .mobile-nav a:hover{color:var(--sunrise-red)}
+
+    /* Hero */
+    .hero{position:relative;min-height:100vh;background:var(--sunrise-gradient-hero);
+      display:flex;align-items:center;justify-content:center;text-align:center;
+      overflow:hidden;padding:var(--space-20) var(--space-6);
+      padding-top:calc(64px + var(--space-20))}
+    .hero::before{content:'';position:absolute;top:-10%;right:-5%;
+      width:600px;height:600px;border-radius:50%;background:var(--sunrise-coral);
+      filter:blur(80px);opacity:.25;pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-10%;left:-5%;
+      width:500px;height:500px;border-radius:50%;background:var(--sunrise-purple);
+      filter:blur(80px);opacity:.25;pointer-events:none}
+    .hero__grid{position:absolute;inset:0;
+      background-image:
+        repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 1px,transparent 1px,transparent 40px),
+        repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 1px,transparent 1px,transparent 40px);
+      pointer-events:none}
+    .hero__content{position:relative;z-index:1;max-width:800px;margin:0 auto}
+    .hero__tag{display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,.25);border-radius:var(--radius-full);
+      padding:6px 18px;font-size:.8125rem;font-weight:600;color:white;
+      letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--space-6)}
+    .hero__title{font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;color:white;
+      line-height:1.1;margin-bottom:var(--space-6)}
+    .hero__subtitle{font-size:1.25rem;color:rgba(255,255,255,.75);max-width:600px;
+      margin:0 auto var(--space-10);line-height:1.6}
+    .hero__btns{display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap}
+    .scroll-ind{position:absolute;bottom:var(--space-8);left:50%;
+      transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:1.5rem;z-index:1;
+      animation:bounce 1.5s ease-in-out infinite}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}
+      50%{transform:translateX(-50%) translateY(8px)}}
+
+    /* S1 – Photos */
+    .photo-card{border-radius:var(--radius-lg);overflow:hidden;
+      background:var(--color-surface);border:1px solid var(--color-border);
+      box-shadow:var(--shadow-sm);transition:var(--transition)}
+    .photo-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+    .photo-card__media{position:relative;aspect-ratio:16/9;overflow:hidden;
+      background:var(--color-surface-2)}
+    .photo-card__media img{width:100%;height:100%;object-fit:cover}
+    .photo-card__media img[src="#"]{display:none}
+    .photo-card__media img[src="#"]~.photo-ph{display:flex !important}
+    .photo-card__tag{position:absolute;top:var(--space-3);left:var(--space-3);z-index:2}
+    .tag-pill{display:inline-block;padding:3px 10px;border-radius:var(--radius-full);
+      background:rgba(15,21,35,.7);backdrop-filter:blur(4px);
+      font-size:.6875rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:white}
+    .photo-ph{width:100%;aspect-ratio:16/9;
+      background:linear-gradient(135deg,#F2F4F7 0%,#E8EBF0 100%);
+      display:none;flex-direction:column;align-items:center;justify-content:center;
+      gap:var(--space-2);color:var(--color-text-faint);font-size:.875rem;font-weight:500}
+    [data-theme="dark"] .photo-ph{background:linear-gradient(135deg,#1C2236 0%,#232A40 100%)}
+    .photo-ph__icon{font-size:2rem}
+    .photo-card__caption{padding:var(--space-4) var(--space-5);
+      font-size:.875rem;font-weight:500;color:var(--color-text-muted)}
+
+    /* S2 – Big Picture */
+    .section-hook{font-size:1.25rem;font-weight:500;color:var(--color-text);
+      max-width:720px;margin:0 auto var(--space-12);text-align:center;line-height:1.7}
+    .hype-card{border-left:3px solid var(--sunrise-coral);padding-left:var(--space-5)}
+    .hype-card h3{font-size:1.125rem;font-weight:700;color:var(--color-text);
+      margin-bottom:var(--space-2);display:flex;align-items:center;gap:var(--space-3)}
+    .hype-card p{font-size:.9375rem;color:var(--color-text-muted);line-height:1.6}
+    .comparison-table{width:100%;border-collapse:collapse;border-radius:var(--radius-lg);
+      overflow:hidden;box-shadow:var(--shadow-sm);margin-top:var(--space-8)}
+    .comparison-table thead tr{background:var(--sunrise-gradient)}
+    .comparison-table thead th{padding:var(--space-5) var(--space-6);text-align:left;
+      color:white;font-size:.9375rem;font-weight:700}
+    .comparison-table tbody tr:nth-child(odd){background:var(--color-bg)}
+    .comparison-table tbody tr:nth-child(even){background:var(--color-bg-soft)}
+    .comparison-table tbody td{padding:var(--space-4) var(--space-6);font-size:.9375rem;
+      color:var(--color-text-muted);border-bottom:1px solid var(--color-border-soft)}
+    .comparison-table tbody td:first-child{font-weight:600;color:var(--color-text)}
+    .yes{color:var(--color-success);font-weight:700}
+    .no{color:var(--color-error);font-weight:700}
+    .big-quote{text-align:center;font-size:1.5rem;font-weight:700;
+      background:var(--sunrise-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;
+      max-width:720px;margin:var(--space-12) auto 0;line-height:1.4}
+
+    /* S3 – How It Works */
+    .flow{display:flex;align-items:center;justify-content:center;
+      gap:var(--space-4);margin:var(--space-10) 0}
+    .flow-node{background:var(--color-surface);border:1px solid var(--color-border);
+      border-radius:var(--radius-lg);padding:var(--space-6) var(--space-5);
+      text-align:center;min-width:130px;flex-shrink:0;box-shadow:var(--shadow-sm)}
+    .flow-node__icon{font-size:2rem;margin-bottom:var(--space-2)}
+    .flow-node__title{font-size:.9375rem;font-weight:700;color:var(--color-text);margin-bottom:var(--space-1)}
+    .flow-node__sub{font-size:.75rem;color:var(--color-text-faint)}
+    .flow-arrow{font-size:1.5rem;font-weight:700;flex-shrink:0;
+      background:var(--sunrise-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text}
+    .concept-card .pill{margin-bottom:var(--space-4)}
+    .concept-card h3{font-size:1.125rem;font-weight:700;color:var(--color-text);margin-bottom:var(--space-3)}
+    .concept-card p{font-size:.9375rem;color:var(--color-text-muted);line-height:1.7}
+
+    /* S4 – Setup */
+    .timeline{position:relative;display:flex;align-items:flex-start;
+      gap:0;margin:var(--space-10) 0}
+    .timeline::before{content:'';position:absolute;top:20px;
+      left:calc(12.5% - 1px);right:calc(12.5% - 1px);
+      height:2px;background:var(--color-border);z-index:0}
+    .tl-step{flex:1;text-align:center;position:relative;z-index:1;padding:0 var(--space-3)}
+    .tl-step__dot{width:40px;height:40px;border-radius:50%;background:var(--sunrise-gradient);
+      display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);
+      font-size:.875rem;font-weight:800;color:white;box-shadow:var(--shadow-glow)}
+    .tl-step__label{font-size:.75rem;font-weight:700;color:var(--color-text-faint);
+      text-transform:uppercase;letter-spacing:.06em;margin-bottom:var(--space-1)}
+    .tl-step__title{font-size:.875rem;font-weight:600;color:var(--color-text);line-height:1.4}
+    .opt-card{position:relative;padding-top:var(--space-10)}
+    .opt-badge{position:absolute;top:var(--space-5);left:var(--space-5);
+      width:36px;height:36px;border-radius:50%;background:var(--sunrise-gradient);
+      display:flex;align-items:center;justify-content:center;
+      font-size:.875rem;font-weight:800;color:white}
+    .opt-card h3{font-size:1.125rem;font-weight:700;color:var(--color-text);margin-bottom:var(--space-3)}
+    .difficulty{display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4)}
+    .diff-label{font-size:.75rem;font-weight:500;color:var(--color-text-faint);
+      text-transform:uppercase;letter-spacing:.06em}
+    .dots{display:flex;gap:5px}
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--color-border)}
+    .dot--on{background:linear-gradient(135deg,var(--sunrise-coral),var(--sunrise-red))}
+    .opt-card p{font-size:.9375rem;color:var(--color-text-muted);line-height:1.6;margin-bottom:var(--space-4)}
+    .analogy{border-left:3px solid var(--sunrise-coral);padding-left:var(--space-4);
+      font-style:italic;font-size:.875rem;color:var(--color-text-muted);margin-bottom:var(--space-4)}
+    .pro{font-size:.875rem;font-weight:500;color:var(--color-success);margin-bottom:var(--space-2)}
+    .con{font-size:.875rem;font-weight:500;color:var(--color-error);margin-bottom:var(--space-2)}
+    .terminal{background:#0F1523;color:#E2E8F0;border-radius:var(--radius-md);
+      padding:16px 20px;font-family:'Courier New',monospace;font-size:13px;
+      overflow-x:auto;margin-top:var(--space-4);line-height:1.6}
+
+    /* S5 – Possibilities */
+    .hero-band{background:var(--sunrise-gradient-hero);color:white;
+      padding:clamp(64px,10vw,96px) var(--space-6);text-align:center}
+    .hero-band__label{display:inline-block;padding:4px 14px;border-radius:var(--radius-full);
+      background:white;font-size:.75rem;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--sunrise-red);margin-bottom:var(--space-6)}
+    .hero-band h2{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:white;margin-bottom:var(--space-4)}
+    .hero-band p{font-size:1.0625rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto;line-height:1.6}
+    .integ{display:grid;grid-template-columns:1fr 1fr;
+      gap:clamp(32px,5vw,64px);align-items:center;
+      padding:var(--space-20) 0;border-bottom:1px solid var(--color-border)}
+    .integ:last-of-type{border-bottom:none}
+    .integ__icon-wrap{display:flex;align-items:center;justify-content:center}
+    .integ__icon{width:160px;height:160px;border-radius:50%;
+      background:var(--sunrise-gradient-soft);display:flex;align-items:center;
+      justify-content:center;font-size:4rem}
+    .integ__body{display:flex;flex-direction:column;gap:var(--space-4)}
+    .integ__body h3{font-size:1.5rem;font-weight:700;color:var(--color-text)}
+    .integ__body>p{font-size:1rem;color:var(--color-text-muted);line-height:1.7}
+    .skills-bg{background:var(--color-bg-soft);padding:clamp(48px,8vw,80px) 0}
+    .skill-tile{display:flex;flex-direction:column;align-items:center;
+      text-align:center;gap:var(--space-3);padding:var(--space-8) var(--space-6)}
+    .skill-tile__icon{font-size:2rem}
+    .skill-tile__label{font-size:.875rem;font-weight:600;color:var(--color-text)}
+    .cta-band{background:var(--sunrise-gradient-hero);color:white;
+      padding:clamp(64px,8vw,96px) var(--space-6);text-align:center}
+    .cta-band blockquote{font-size:1.375rem;font-weight:600;color:white;font-style:italic;
+      max-width:640px;margin:0 auto var(--space-4);line-height:1.5}
+    .cta-band p{font-size:1rem;color:rgba(255,255,255,.8);max-width:500px;
+      margin:0 auto var(--space-8)}
+
+    /* Footer */
+    .footer{background:#0F1523;color:rgba(255,255,255,.8);
+      padding:clamp(48px,6vw,80px) 0 0}
+    .footer__grid{display:grid;grid-template-columns:1fr 1fr 1fr;
+      gap:var(--space-10);padding-bottom:var(--space-10)}
+    .footer-logo-row{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3)}
+    .footer__logo-text{font-size:1rem;font-weight:700;color:white}
+    .footer__tagline{font-size:.875rem;color:rgba(255,255,255,.45)}
+    .footer__heading{font-size:.75rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;
+      color:rgba(255,255,255,.45);margin-bottom:var(--space-4)}
+    .footer__links{display:flex;flex-direction:column;gap:var(--space-3)}
+    .footer__links a{font-size:.875rem;color:rgba(255,255,255,.6);transition:var(--transition)}
+    .footer__links a:hover{color:var(--sunrise-coral)}
+    .footer__built{font-size:.875rem;color:rgba(255,255,255,.6);margin-bottom:var(--space-3)}
+    .footer__pill{display:inline-block;padding:4px 12px;border-radius:var(--radius-full);
+      border:1px solid rgba(255,255,255,.15);font-size:.75rem;font-weight:600;
+      color:rgba(255,255,255,.5)}
+    .footer__bottom{border-top:1px solid rgba(255,255,255,.08);padding:var(--space-5) 0;
+      text-align:center;font-size:.75rem;color:rgba(255,255,255,.3)}
+
+    /* Responsive */
+    @media (max-width:768px){
+      .header__nav{display:none}
+      .hamburger{display:flex}
+      .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+      .flow{flex-direction:column;align-items:center}
+      .flow-arrow{transform:rotate(90deg)}
+      .integ{grid-template-columns:1fr;padding:var(--space-12) 0;gap:var(--space-8)}
+      .integ--rev .integ__icon-wrap{order:-1}
+      .timeline{flex-direction:column;gap:var(--space-6);align-items:flex-start}
+      .timeline::before{display:none}
+      .tl-step{text-align:left;display:flex;align-items:flex-start;gap:var(--space-4)}
+      .tl-step__dot{margin:0;flex-shrink:0}
+      .footer__grid{grid-template-columns:1fr;gap:var(--space-8)}
+    }
+    @media (min-width:769px) and (max-width:1024px){
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      .grid-4{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
 </head>
-<body class="page--home">
+<body>
 
-  <!-- Navigation -->
-  <header class="nav nav--transparent" id="nav">
-    <div class="nav__container">
-      <a href="index.html" class="nav__logo">
-        <span class="nav__logo-text">
-          <span class="nav__logo-main">Face Art</span>
-          <span class="nav__logo-sub">Zürich</span>
-        </span>
-        <img class="nav__logo-img" src="src/images/logo.png" alt="Face Art Zürich Logo">
+  <header class="header">
+    <div class="header__inner">
+      <a href="#" class="header__logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <defs>
+            <linearGradient id="lg1" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FF6B35"/>
+              <stop offset="45%" stop-color="#E8174A"/>
+              <stop offset="100%" stop-color="#C9006A"/>
+            </linearGradient>
+          </defs>
+          <circle cx="16" cy="21" r="7" fill="url(#lg1)"/>
+          <line x1="16" y1="13" x2="16" y2="4"  stroke="url(#lg1)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="16" y1="13" x2="23" y2="7"  stroke="url(#lg1)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="16" y1="13" x2="9"  y2="7"  stroke="url(#lg1)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="16" y1="13" x2="26" y2="13" stroke="url(#lg1)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="16" y1="13" x2="6"  y2="13" stroke="url(#lg1)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="header__logo-text">OpenClaw Experience</span>
       </a>
-      <nav class="nav__menu" id="navMenu" aria-label="Hauptnavigation">
-        <a href="index.html" class="nav__link nav__link--active">Start</a>
-        <a href="kinderschminken.html" class="nav__link">Kinderschminken</a>
-        <a href="hochzeiten.html" class="nav__link">Hochzeiten</a>
-        <a href="unternehmen.html" class="nav__link">Für Unternehmen</a>
-        <a href="about.html" class="nav__link">Über mich</a>
-        <a href="kontakt.html" class="nav__link nav__link--cta">Kontakt</a>
+      <nav class="header__nav" aria-label="Main navigation">
+        <a href="#journey"       class="nav-link" data-section="journey">Journey</a>
+        <a href="#big-picture"   class="nav-link" data-section="big-picture">Big Picture</a>
+        <a href="#how-it-works"  class="nav-link" data-section="how-it-works">How It Works</a>
+        <a href="#setup"         class="nav-link" data-section="setup">Setup</a>
+        <a href="#possibilities" class="nav-link" data-section="possibilities">Possibilities</a>
       </nav>
-      <button class="nav__toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="header__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">☀️</button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="#journey"       onclick="closeMobileNav()">Journey</a>
+    <a href="#big-picture"   onclick="closeMobileNav()">Big Picture</a>
+    <a href="#how-it-works"  onclick="closeMobileNav()">How It Works</a>
+    <a href="#setup"         onclick="closeMobileNav()">Setup</a>
+    <a href="#possibilities" onclick="closeMobileNav()">Possibilities</a>
+  </div>
+
   <main>
 
-    <!-- ========== ACCORDION HERO ========== -->
-    <section class="acc-hero" id="accHero">
-      <div class="hero__bg"></div>
-      <div class="acc-hero__inner">
-
-        <!-- Text block -->
-        <div class="acc-hero__text">
-          <p class="section__label">Zürich &amp; Umgebung</p>
-          <h1 class="acc-hero__title">
-            Kinderschminken &amp; Face Art in Zürich<br><em>Für Geburtstage, Events &amp; Hochzeiten</em>
-          </h1>
-          <p class="acc-hero__subtitle">Kinderschminken &amp; Face Art — direkt zu eurem Event</p>
-          <div class="acc-hero__cta">
-            <a href="https://wa.me/41764394928?text=Hallo%20Isa%2C%20ich%20m%C3%B6chte%20eine%20Anfrage%20stellen."
-               class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer">
-              <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              WhatsApp
-            </a>
-            <a href="kontakt.html" class="btn btn--outline-white">Anfrage stellen</a>
-          </div>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero__grid"></div>
+      <div class="hero__content">
+        <span class="hero__tag">OpenClaw · Business Experience</span>
+        <h1 class="hero__title">From Curious<br>to Connected</h1>
+        <p class="hero__subtitle">How I built a private AI infrastructure — and what it means for how we work.</p>
+        <div class="hero__btns">
+          <a href="#journey" class="btn-white"><span>See the Journey →</span></a>
+          <a href="#possibilities" class="btn-ghost">What's Possible →</a>
         </div>
-
-        <!-- Image Accordion -->
-        <div class="acc-hero__accordion" id="accHeroAccordion" aria-label="Galerie — Face Art Motive">
-
-          <div class="acc-panel acc-panel--active" data-index="0">
-            <img src="src/images/gallery/Start/rosen-body-art-zuerich.jpg" alt="Rosen Body Art" draggable="false" width="1864" height="1865" fetchpriority="high">
-            <div class="acc-panel__overlay"></div>
-            <span class="acc-panel__label">Body Art</span>
-          </div>
-
-          <div class="acc-panel" data-index="1">
-            <img src="src/images/gallery/Start/einhorn-face-art-zuerich.jpg" alt="Einhorn Face Art" draggable="false" width="2286" height="2419">
-            <div class="acc-panel__overlay"></div>
-            <span class="acc-panel__label">Einhorn</span>
-          </div>
-
-          <div class="acc-panel" data-index="2">
-            <img src="src/images/gallery/Start/pikachu-kinderschminken-zuerich.jpg" alt="Pikachu Face Art" draggable="false" width="804" height="760">
-            <div class="acc-panel__overlay"></div>
-            <span class="acc-panel__label">Pikachu</span>
-          </div>
-
-          <div class="acc-panel" data-index="3">
-            <img src="src/images/gallery/Start/blumen-face-art-kinderschminken.jpg" alt="Blumen Face Art" draggable="false" width="832" height="1005">
-            <div class="acc-panel__overlay"></div>
-            <span class="acc-panel__label">Blumen</span>
-          </div>
-
-          <div class="acc-panel" data-index="4">
-            <img src="src/images/gallery/Start/flugzeug-body-art-kinder.png" alt="Flugzeug Face Art" draggable="false" width="867" height="1152">
-            <div class="acc-panel__overlay"></div>
-            <span class="acc-panel__label">Flugzeug</span>
-          </div>
-
-        </div>
-
       </div>
+      <div class="scroll-ind" aria-hidden="true">↓</div>
     </section>
 
-    <!-- ========== SERVICES ========== -->
-    <section class="section">
+    <!-- 01 – JOURNEY -->
+    <section id="journey" class="section section--soft">
       <div class="container">
-        <header class="section__header">
-          <span class="section__label">Meine Angebote</span>
-          <h2 class="section__title">Kinderschminken &amp; Face Art für jeden Anlass</h2>
-          <p class="section__subtitle">Von Kindergeburtstagen bis zu Firmenanlässen — Isa kommt direkt zu euch, mit Farbe, Kreativität und 6–8 Motiven pro Stunde.</p>
-        </header>
-        <div class="services__grid">
-          <a href="kinderschminken.html" class="service-card">
-            <div class="service-card__img service-card__img--kinder">
-              <img src="src/images/gallery/Kinder/einhorn-drachen-kinderschminken-zuerich.jpg" alt="Kinderschminken — Einhorn und Drachen" width="744" height="711">
-            </div>
-            <div class="service-card__body">
-              <h3 class="service-card__title">Kinderschminken</h3>
-              <p class="service-card__text">Einhörner, Superhelden, Drachen, Feen — jedes Motiv ein Unikat. Für Geburtstage, Privatevents und mehr.</p>
-              <span class="service-card__link">Mehr erfahren →</span>
-            </div>
-          </a>
-          <a href="hochzeiten.html" class="service-card">
-            <div class="service-card__img service-card__img--hochzeit">
-              <img src="src/images/gallery/Hochzeit/elegantes-blumen-face-art-hochzeit.jpg" alt="Hochzeiten — Elegantes Blumenornament" width="1093" height="1191">
-            </div>
-            <div class="service-card__body">
-              <h3 class="service-card__title">Hochzeiten</h3>
-              <p class="service-card__text">Elegante Motive für Brautpaar und Gäste — ein romantisches Highlight, über das alle noch lange sprechen.</p>
-              <span class="service-card__link">Mehr erfahren →</span>
-            </div>
-          </a>
-          <a href="unternehmen.html" class="service-card">
-            <div class="service-card__img service-card__img--corporate">
-              <img src="src/images/gallery/Events/flug and zug/isa-stand-kinderschminken-event.jpg" alt="Für Unternehmen — Kinderschminken am Event-Stand" width="866" height="563">
-            </div>
-            <div class="service-card__body">
-              <h3 class="service-card__title">Für Unternehmen</h3>
-              <p class="service-card__text">Firmenjubiläum, Sommerfest, Weihnachtsfeier — Face Art als Publikumsmagnet und Gesprächsstarter für Ihr Event.</p>
-              <span class="service-card__link">Mehr erfahren →</span>
-            </div>
-          </a>
-          <a href="about.html" class="service-card">
-            <div class="service-card__img service-card__img--about">
-              <img src="src/images/isa-face-art-zuerich.jpg" alt="Isa — Face Art Zürich" class="service-card__isa" width="1724" height="1611">
-            </div>
-            <div class="service-card__body">
-              <h3 class="service-card__title">Über mich</h3>
-              <p class="service-card__text">Hinter Face Art Zürich steckt Isa — Künstlerin aus Dübendorf, die seit Jahren Kindergesichter und Erwachsene verwandelt.</p>
-              <span class="service-card__link">Mehr erfahren →</span>
-            </div>
-          </a>
+        <div class="section-intro reveal-on-scroll">
+          <span class="section-label">01 / The Journey</span>
+          <h2 class="section-heading">My OpenClaw Journey — in Pictures</h2>
+          <p class="section-description">Before I explain what OpenClaw is, let me show you what I actually built. Over the past few months I set up a private AI assistant running on my own server — connected to Telegram, WordPress, and GitHub. These are a few snapshots from that journey.</p>
         </div>
+
+        <div class="grid-3">
+          <!-- PHOTO 1: Replace src="#" with your image path -->
+          <div class="photo-card reveal-on-scroll">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">Telegram</span></span>
+              <img src="#" alt="Telegram Bot Interface">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Telegram Bot Interface</span></div>
+            </div>
+            <p class="photo-card__caption">Chatting with my AI via Telegram, just like WhatsApp</p>
+          </div>
+          <!-- PHOTO 2: Replace src="#" with your image path -->
+          <div class="photo-card reveal-on-scroll" style="transition-delay:80ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">Telegram</span></span>
+              <img src="#" alt="Telegram Bot Response">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Telegram Bot Response</span></div>
+            </div>
+            <p class="photo-card__caption">The bot answering a real question from my phone</p>
+          </div>
+          <!-- PHOTO 3: Replace src="#" with your image path -->
+          <div class="photo-card reveal-on-scroll" style="transition-delay:160ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">Dashboard</span></span>
+              <img src="#" alt="OpenClaw Dashboard">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>OpenClaw Dashboard</span></div>
+            </div>
+            <p class="photo-card__caption">The control panel where I manage agents and skills</p>
+          </div>
+          <!-- PHOTO 4: Replace src="#" with your image path -->
+          <div class="photo-card reveal-on-scroll" style="transition-delay:240ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">WordPress</span></span>
+              <img src="#" alt="WordPress Integration">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>WordPress Integration</span></div>
+            </div>
+            <p class="photo-card__caption">AI-assisted content being pushed directly to my website</p>
+          </div>
+          <!-- PHOTO 5: Replace src="#" with your image path -->
+          <div class="photo-card reveal-on-scroll" style="transition-delay:320ms">
+            <div class="photo-card__media">
+              <span class="photo-card__tag"><span class="tag-pill">GitHub</span></span>
+              <img src="#" alt="GitHub Workflow">
+              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>GitHub Workflow</span></div>
+            </div>
+            <p class="photo-card__caption">Code changes reviewed and committed by the AI agent</p>
+          </div>
+        </div>
+
+        <blockquote class="pull-quote reveal-on-scroll" style="max-width:680px;margin:var(--space-12) auto 0">
+          None of this required writing complex code from scratch — it was all about connecting the right tools in the right order.
+        </blockquote>
       </div>
     </section>
 
-    <!-- ========== MSF DONATION TEASER ========== -->
-    <section class="section section--cream">
+    <!-- 02 – BIG PICTURE -->
+    <section id="big-picture" class="section">
       <div class="container">
-        <div class="msf-teaser__grid">
-          <div>
-            <span class="section__label">Freude mit Wirkung</span>
-            <div class="msf-teaser__amount">CHF 500</div>
-            <h2 class="msf-teaser__title">gespendet an Ärzte ohne Grenzen</h2>
-            <div class="divider"></div>
-            <p class="msf-teaser__text">Am 48. Chlausmärt Dübendorf hat Isa den gesamten Erlös ihres Standes — CHF 500 — direkt an <strong>Médecins Sans Frontières / Ärzte ohne Grenzen</strong> gespendet. Jedes Kinderlächeln, jedes bunte Motiv: nicht nur ein Moment der Freude, sondern auch ein Beitrag zu etwas Grösserem. Isa freut sich bereits auf den nächsten Chlausmärt — und plant, die Einnahmen erneut vollständig zu spenden.</p>
-            <a href="about.html#chlausmaert" class="btn btn--primary">Zur Event-Story →</a>
+        <div class="section-intro reveal-on-scroll">
+          <span class="section-label">02 / The Big Picture</span>
+          <h2 class="section-heading">What is OpenClaw — and Why Was Everyone Talking About It?</h2>
+        </div>
+
+        <p class="section-hook reveal-on-scroll">
+          You've heard of ChatGPT. OpenClaw is what happens when you want that same power — but running on your own server, following your own rules, with your data never leaving your infrastructure.
+        </p>
+
+        <div class="grid-3" style="margin-bottom:var(--space-10)">
+          <div class="card reveal-on-scroll">
+            <div class="icon-circle">🖥️</div>
+            <h3 style="font-size:1.125rem;font-weight:700;color:var(--color-text);margin-bottom:var(--space-3)">It runs on your hardware</h3>
+            <p style="font-size:.9375rem;color:var(--color-text-muted);line-height:1.6">Not a cloud subscription. A virtual server you control, hosted wherever you choose — for example Hostinger, or your own machine.</p>
           </div>
-          <div class="msf-teaser__visual">
-            <img src="src/images/gallery/Events/Chlausmaert/msf-board.jpeg" alt="MSF Plakat am Chlausmärt — Der gesamte Erlös geht an Ärzte ohne Grenzen" loading="lazy" width="1200" height="1600">
+          <div class="card reveal-on-scroll" style="transition-delay:80ms">
+            <div class="icon-circle">🤖</div>
+            <h3 style="font-size:1.125rem;font-weight:700;color:var(--color-text);margin-bottom:var(--space-3)">It gives AI "hands"</h3>
+            <p style="font-size:.9375rem;color:var(--color-text-muted);line-height:1.6">OpenClaw can execute tasks: read files, write to websites, send messages, run code. It is not just a chatbot — it is an agent.</p>
+          </div>
+          <div class="card reveal-on-scroll" style="transition-delay:160ms">
+            <div class="icon-circle">🔗</div>
+            <h3 style="font-size:1.125rem;font-weight:700;color:var(--color-text);margin-bottom:var(--space-3)">It connects to everything</h3>
+            <p style="font-size:.9375rem;color:var(--color-text-muted);line-height:1.6">Telegram, Slack, WhatsApp, WordPress, GitHub. One AI brain, all your channels.</p>
           </div>
         </div>
+
+        <div class="grid-2" style="margin-bottom:var(--space-10)">
+          <div class="card hype-card reveal-on-scroll"><h3>🔒 Privacy</h3><p>Your prompts and data never leave your server. Critical for sensitive business content.</p></div>
+          <div class="card hype-card reveal-on-scroll" style="transition-delay:80ms"><h3>💰 Cost control</h3><p>No per-message pricing. Run it 24/7 for a flat server fee — roughly €5–15 per month on Hostinger.</p></div>
+          <div class="card hype-card reveal-on-scroll" style="transition-delay:160ms"><h3>🔓 No vendor lock-in</h3><p>Switch between AI models (Komo 2.5, LLaMA, Mistral) without changing anything else.</p></div>
+          <div class="card hype-card reveal-on-scroll" style="transition-delay:240ms"><h3>⏰ Automation that runs while you sleep</h3><p>Unlike ChatGPT which waits for you, OpenClaw can run on a schedule, monitor conditions, and message you first.</p></div>
+        </div>
+
+        <div class="reveal-on-scroll" style="overflow-x:auto">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>ChatGPT</th>
+                <th style="background:rgba(255,255,255,.15)">OpenClaw ✦</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Runs on</td><td>OpenAI's servers</td><td>Your own server</td></tr>
+              <tr><td>Data ownership</td><td>OpenAI's terms</td><td>Fully yours</td></tr>
+              <tr><td>Works without you</td><td><span class="no">✗ Session-based</span></td><td><span class="yes">✓ Autonomous, scheduled</span></td></tr>
+              <tr><td>Setup effort</td><td>Instant</td><td>1–2 hours</td></tr>
+              <tr><td>Monthly cost</td><td>€20+ subscription</td><td>~€5–15 server fee</td></tr>
+              <tr><td>Connects to your tools</td><td><span class="no">✗ Limited</span></td><td><span class="yes">✓ WordPress, Telegram, GitHub + more</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="big-quote reveal-on-scroll">"The distinction that matters: ChatGPT is a service you rent. OpenClaw is infrastructure you own."</p>
       </div>
     </section>
 
-    <!-- ========== TESTIMONIALS ========== -->
-    <section class="section testimonials-section">
+    <!-- 03 – HOW IT WORKS -->
+    <section id="how-it-works" class="section section--soft">
       <div class="container">
-        <header class="section__header section__header--center testimonials-section__header">
-          <span class="section__label">Was Kunden sagen</span>
-          <h2 class="section__title">Kundenstimmen — Kinderschminken Zürich</h2>
-          <p class="section__subtitle">Echte Erfahrungen von Eltern, Brautpaaren und Eventorganisatoren.</p>
-        </header>
+        <div class="section-intro reveal-on-scroll">
+          <span class="section-label">03 / Under the Hood</span>
+          <h2 class="section-heading">How OpenClaw Works — Without the Technical Jargon</h2>
+          <p class="section-description">At its core, OpenClaw is a bridge between you and an AI model — with a layer of intelligence in between that decides what to do with your request.</p>
+        </div>
 
-        <div class="testimonials-columns" aria-label="Kundenstimmen">
-
-          <!-- Column 1 -->
-          <div class="testimonials-col testimonials-col--1">
-            <div class="testimonials-col__track" style="animation-duration: 32s;">
-              <div class="t-card"><p class="t-card__text">„Wir sind mehr als begeistert! Isa ist eine super herzliche Person und unsere Kleine war mega happy mit dem tollen Einhorn, was sie gezaubert hat. Sie hatte immer ein Lächeln auf dem Gesicht und geht wunderbar auf die Wünsche der Kleinen ein. Immer wieder gerne!"</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#68A9A0">LH</span><div><strong class="t-card__name">Lisa H.</strong><span class="t-card__role">Google Local Guide · Kindergeburtstag</span></div></div></div>
-              <div class="t-card"><p class="t-card__text">„Isa hat für uns an Ostern geschminkt und die Kinder waren hin und weg! Das Regenbogeneinhorn war wunderschön, für den Kleinen gab es einen Drachen, den er stolz herumzeigte. Wir werden sie für das nächste Fest auf jeden Fall wieder buchen!"</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#9B7AC7">LH</span><div><strong class="t-card__name">Laura Hufnagel</strong><span class="t-card__role">Mama · Oster-Event</span></div></div></div>
-              <!-- duplicate for seamless loop -->
-              <div class="t-card" aria-hidden="true"><p class="t-card__text">„Wir sind mehr als begeistert! Isa ist eine super herzliche Person und unsere Kleine war mega happy mit dem tollen Einhorn, was sie gezaubert hat. Sie hatte immer ein Lächeln auf dem Gesicht und geht wunderbar auf die Wünsche der Kleinen ein. Immer wieder gerne!"</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#68A9A0">LH</span><div><strong class="t-card__name">Lisa H.</strong><span class="t-card__role">Google Local Guide · Kindergeburtstag</span></div></div></div>
-              <div class="t-card" aria-hidden="true"><p class="t-card__text">„Isa hat für uns an Ostern geschminkt und die Kinder waren hin und weg! Das Regenbogeneinhorn war wunderschön, für den Kleinen gab es einen Drachen, den er stolz herumzeigte. Wir werden sie für das nächste Fest auf jeden Fall wieder buchen!"</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#9B7AC7">LH</span><div><strong class="t-card__name">Laura Hufnagel</strong><span class="t-card__role">Mama · Oster-Event</span></div></div></div>
-            </div>
+        <div class="flow reveal-on-scroll">
+          <div class="flow-node">
+            <div class="flow-node__icon">👤</div>
+            <div class="flow-node__title">You</div>
+            <div class="flow-node__sub">Telegram · Dashboard · Terminal</div>
           </div>
-
-          <!-- Column 2 (hidden on mobile) -->
-          <div class="testimonials-col testimonials-col--2">
-            <div class="testimonials-col__track" style="animation-duration: 40s;">
-              <div class="t-card"><p class="t-card__text">„Isa hat für uns am 3. Geburtstag meiner Tochter geschminkt. Sie zaubert mit ihren tollen Motiven jedem Kind ein Lachen ins Gesicht. Noch dazu ist sie sehr liebevoll mit den Kindern, super sympathisch und stets mit grosser Hingabe und bester Laune dabei. Ich kann sie wärmstens empfehlen."</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#B87A8A">LF</span><div><strong class="t-card__name">Lisa Fuchs</strong><span class="t-card__role">Mama · 3. Kindergeburtstag</span></div></div></div>
-              <div class="t-card"><p class="t-card__text">„Ich war von Isas Arbeit auf meinem Junggesellinnenabschied sehr angetan. Ihr wunderschönes Make-up machte die Feier zu etwas ganz Besonderem. Die Kommunikation mit ihr war so gut, dass ich ihr spontan zusätzliche Verantwortung für die Gestaltung überliess. Absolut empfehlenswert!"</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#7C6CAA">SN</span><div><strong class="t-card__name">Sabrina Nv</strong><span class="t-card__role">Braut · Junggesellinnenabschied</span></div></div></div>
-              <div class="t-card" aria-hidden="true"><p class="t-card__text">„Isa hat für uns am 3. Geburtstag meiner Tochter geschminkt. Sie zaubert mit ihren tollen Motiven jedem Kind ein Lachen ins Gesicht. Noch dazu ist sie sehr liebevoll mit den Kindern, super sympathisch und stets mit grosser Hingabe und bester Laune dabei. Ich kann sie wärmstens empfehlen."</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#B87A8A">LF</span><div><strong class="t-card__name">Lisa Fuchs</strong><span class="t-card__role">Mama · 3. Kindergeburtstag</span></div></div></div>
-              <div class="t-card" aria-hidden="true"><p class="t-card__text">„Ich war von Isas Arbeit auf meinem Junggesellinnenabschied sehr angetan. Ihr wunderschönes Make-up machte die Feier zu etwas ganz Besonderem. Die Kommunikation mit ihr war so gut, dass ich ihr spontan zusätzliche Verantwortung für die Gestaltung überliess. Absolut empfehlenswert!"</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#7C6CAA">SN</span><div><strong class="t-card__name">Sabrina Nv</strong><span class="t-card__role">Braut · Junggesellinnenabschied</span></div></div></div>
-            </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">
+            <div class="flow-node__icon">🧩</div>
+            <div class="flow-node__title">OpenClaw Gateway</div>
+            <div class="flow-node__sub">Routes, formats, remembers context</div>
           </div>
-
-          <!-- Column 3 (hidden on mobile + tablet) -->
-          <div class="testimonials-col testimonials-col--3">
-            <div class="testimonials-col__track" style="animation-duration: 36s; animation-direction: reverse;">
-              <div class="t-card"><p class="t-card__text">„Isa war super herzlich und hat die Kinder total begeistert. Die Schminke sah richtig schön aus und hat auch gut gehalten. Alles lief unkompliziert und entspannt ab. Wir würden sie jederzeit wieder buchen!"</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#4A8C84">AM</span><div><strong class="t-card__name">Alex Miller</strong><span class="t-card__role">Familienfest</span></div></div></div>
-              <div class="t-card"><p class="t-card__text">„Isa hat bei uns an einem Kinderfest ganz viele Kinder glücklich gemacht! Trotz des grossen Andrangs blieb sie ruhig und gelassen. Sie hat einen super Draht zu Kindern und kann individuell auf sie eingehen. Trotzdem arbeitet sie sehr zügig — alle wurden bedient."</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#9A7080">CV</span><div><strong class="t-card__name">Claudia Vetsch</strong><span class="t-card__role">Organisatorin · Kinderfest</span></div></div></div>
-              <div class="t-card" aria-hidden="true"><p class="t-card__text">„Isa war super herzlich und hat die Kinder total begeistert. Die Schminke sah richtig schön aus und hat auch gut gehalten. Alles lief unkompliziert und entspannt ab. Wir würden sie jederzeit wieder buchen!"</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#4A8C84">AM</span><div><strong class="t-card__name">Alex Miller</strong><span class="t-card__role">Familienfest</span></div></div></div>
-              <div class="t-card" aria-hidden="true"><p class="t-card__text">„Isa hat bei uns an einem Kinderfest ganz viele Kinder glücklich gemacht! Trotz des grossen Andrangs blieb sie ruhig und gelassen. Sie hat einen super Draht zu Kindern und kann individuell auf sie eingehen. Trotzdem arbeitet sie sehr zügig — alle wurden bedient."</p><div class="t-card__author"><span class="t-card__avatar" style="--avatar-c:#9A7080">CV</span><div><strong class="t-card__name">Claudia Vetsch</strong><span class="t-card__role">Organisatorin · Kinderfest</span></div></div></div>
-            </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">
+            <div class="flow-node__icon">🧠</div>
+            <div class="flow-node__title">LLM / AI Brain</div>
+            <div class="flow-node__sub">e.g. Komo 2.5, LLaMA 3, Mistral</div>
           </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">
+            <div class="flow-node__icon">⚡</div>
+            <div class="flow-node__title">Action</div>
+            <div class="flow-node__sub">Reply sent · File written · Post published</div>
+          </div>
+        </div>
 
+        <div class="grid-3" style="margin-top:var(--space-10)">
+          <div class="card concept-card reveal-on-scroll">
+            <span class="pill">The Brain</span>
+            <h3>The LLM — Large Language Model</h3>
+            <p>Think of it as the brain. It reads your message and generates a smart response. You have used one already — that is what powers ChatGPT. The difference: with OpenClaw, the brain runs on your server.</p>
+          </div>
+          <div class="card concept-card reveal-on-scroll" style="transition-delay:80ms">
+            <span class="pill">The Manager</span>
+            <h3>The Gateway — OpenClaw itself</h3>
+            <p>This is the manager. It receives your message from any channel — Telegram, web, or terminal — formats it for the AI, adds memory of past conversations, and sends the response back formatted for wherever you asked from.</p>
+          </div>
+          <div class="card concept-card reveal-on-scroll" style="transition-delay:160ms">
+            <span class="pill">The Hands</span>
+            <h3>Skills and Tools</h3>
+            <p>These are the hands. The AI can be given tools — web search, file writing, code execution, API calls. Each tool is a skill you activate. You decide what it can and cannot do.</p>
+          </div>
+        </div>
+
+        <div class="callout reveal-on-scroll" style="margin-top:var(--space-10)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-2)">💡 Self-hosting explained in one sentence</p>
+          <p style="font-size:.9375rem;color:var(--color-text-muted);line-height:1.6">Instead of using someone else's computer (a cloud service), you run the software on a server you pay for and control. That is all it means.</p>
         </div>
       </div>
     </section>
 
-    <!-- ========== PRICE TEASER ========== -->
-    <section class="section text-center price-teaser">
-      <div class="container container--narrow">
-        <span class="section__label">Transparent &amp; Fair</span>
-        <h2 class="section__title">CHF 145 <small style="font-size:.45em;color:var(--text-light);">/ Stunde</small></h2>
-        <p class="price-teaser__text">Plus Anfahrtskosten von CHF 1/km ab 8600 Dübendorf / Zürich. Unverbindliches Angebot auf Anfrage — schnell &amp; unkompliziert.</p>
-        <a href="kontakt.html" class="btn btn--primary">Angebot anfragen</a>
-      </div>
-    </section>
-
-    <!-- ========== NEWSLETTER ========== -->
-    <section class="newsletter-section" id="newsletter" aria-label="Newsletter Anmeldung">
+    <!-- 04 – SETUP -->
+    <section id="setup" class="section">
       <div class="container">
-        <div class="newsletter-section__inner">
-          <span class="newsletter-section__badge">Bleib dabei</span>
-          <h2 class="newsletter-section__title">Nie mehr einen<br><em>Event verpassen.</em></h2>
-          <p class="newsletter-section__subtitle">Wähle, was dich interessiert — Isa schreibt dir direkt.<br>Kein Spam, jederzeit abmeldbar.</p>
+        <div class="section-intro reveal-on-scroll">
+          <span class="section-label">04 / The Setup</span>
+          <h2 class="section-heading">Getting Started — Three Ways to Work with OpenClaw</h2>
+          <p class="section-description">I started with zero server experience. I rented a virtual server on Hostinger (around €7 per month), then used NVIDIA's free cloud tool at build.nvidia.com to access the Komo 2.5 AI model for free. As I got more comfortable, I switched to Ollama — which lets you run AI models fully locally on your own hardware. Then I added Claude Code to help me write and debug configuration directly in the terminal.</p>
+        </div>
 
-          <div class="newsletter-section__options" role="group" aria-label="Newsletter-Optionen">
+        <div class="timeline reveal-on-scroll">
+          <div class="tl-step"><div class="tl-step__dot">1</div><div><div class="tl-step__label">Step 1</div><div class="tl-step__title">Rent Hostinger VPS</div></div></div>
+          <div class="tl-step"><div class="tl-step__dot">2</div><div><div class="tl-step__label">Step 2</div><div class="tl-step__title">Connect free LLM via NVIDIA (Komo 2.5)</div></div></div>
+          <div class="tl-step"><div class="tl-step__dot">3</div><div><div class="tl-step__label">Step 3</div><div class="tl-step__title">Switch to Ollama</div></div></div>
+          <div class="tl-step"><div class="tl-step__dot">4</div><div><div class="tl-step__label">Step 4</div><div class="tl-step__title">Add Claude Code</div></div></div>
+        </div>
 
-            <label class="nl-option is-active" data-value="events">
-              <input type="checkbox" class="nl-option__checkbox" name="pref-events" checked aria-label="Events & Auftritte abonnieren">
-              <span class="nl-option__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="15" r="1" fill="currentColor"/><circle cx="12" cy="15" r="1" fill="currentColor"/><circle cx="16" cy="15" r="1" fill="currentColor"/></svg></span>
-              <span class="nl-option__title">Events &amp; Auftritte</span>
-              <span class="nl-option__check" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>
-            </label>
-
-            <label class="nl-option" data-value="angebote">
-              <input type="checkbox" class="nl-option__checkbox" name="pref-angebote" aria-label="Persönliche Angebote abonnieren">
-              <span class="nl-option__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-              <span class="nl-option__title">Persönliche Angebote</span>
-              <span class="nl-option__check" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>
-            </label>
-
+        <div class="grid-3" style="margin-top:var(--space-10)">
+          <div class="card opt-card reveal-on-scroll">
+            <div class="opt-badge">1</div>
+            <h3>Terminal in Hostinger</h3>
+            <div class="difficulty"><span class="diff-label">Difficulty</span><div class="dots"><span class="dot dot--on"></span><span class="dot dot--on"></span><span class="dot dot--on"></span></div></div>
+            <p>Write and run everything manually via SSH terminal. Full control, steep learning curve. Best for developers.</p>
+            <p class="analogy">Like flying a plane manually — powerful, but you need to know what you're doing.</p>
+            <p class="pro">✓ Maximum control over every setting</p>
+            <p class="con">✗ Easy to break things if you mistype a command</p>
+            <div class="terminal">ssh root@your-server-ip<br>cd /opt/openclaw<br>docker compose up -d</div>
           </div>
-
-          <form class="nl-form" id="nlFormIndex" novalidate>
-            <div class="nl-form__field">
-              <input type="email" class="nl-form__input" placeholder="deine@email.ch" required aria-label="E-Mail Adresse">
-              <button type="submit" class="nl-form__btn">Jetzt anmelden</button>
-            </div>
-            <p class="nl-form__error" role="alert" aria-live="polite"></p>
-            <p class="nl-form__privacy">Kein Spam. Jederzeit mit einem Klick abmeldbar.</p>
-          </form>
-
-          <div class="nl-success" id="nlSuccessIndex" hidden aria-live="polite">
-            <div class="nl-success__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" aria-hidden="true"><polyline points="4,12 9,17 20,6"/></svg>
-            </div>
-            <h3 class="nl-success__title">Danke, du bist dabei!</h3>
-            <p class="nl-success__text">Isa freut sich — du erhältst bald die ersten Updates direkt in dein Postfach.</p>
+          <div class="card opt-card reveal-on-scroll" style="transition-delay:80ms">
+            <div class="opt-badge">2</div>
+            <h3>OpenClaw Dashboard</h3>
+            <div class="difficulty"><span class="diff-label">Difficulty</span><div class="dots"><span class="dot dot--on"></span><span class="dot"></span><span class="dot"></span></div></div>
+            <p>Use the built-in web UI to configure agents, manage skills, and chat with your AI. No command line needed.</p>
+            <p class="analogy">The friendly face of OpenClaw. If you can use a website, you can use this.</p>
+            <p class="pro">✓ Visual, intuitive, and beginner-friendly</p>
+            <p class="con">✗ Limited flexibility for complex custom setups</p>
+            <div class="terminal">Open browser → http://your-server-ip:18789<br>Log in → Settings → Agents → Add Skill</div>
           </div>
-
+          <div class="card opt-card reveal-on-scroll" style="transition-delay:160ms">
+            <div class="opt-badge">3</div>
+            <h3>Claude Code in Terminal</h3>
+            <div class="difficulty"><span class="diff-label">Difficulty</span><div class="dots"><span class="dot dot--on"></span><span class="dot dot--on"></span><span class="dot"></span></div></div>
+            <p>Claude Code is an AI coding assistant running inside your terminal. You describe what you want, it writes the configuration or code for you.</p>
+            <p class="analogy">Like having a developer sitting next to you — you explain, it writes.</p>
+            <p class="pro">✓ Fast, guided, and you learn as you go</p>
+            <p class="con">✗ Requires an active terminal connection to your server</p>
+            <div class="terminal"><span style="color:#9BA3B4"># Inside your Hostinger terminal:</span><br>claude<br><span style="color:#9BA3B4">&gt; "Set up my OpenClaw Telegram bot integration"</span></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== CONTACT ========== -->
-    <section class="section section--cream" id="kontakt">
-      <div class="container">
-        <div class="contact-teaser__grid">
+    <!-- 05 – POSSIBILITIES -->
+    <section id="possibilities">
 
-          <div>
-            <span class="section__label">Kontakt</span>
-            <h2 class="section__title">Ich freue mich auf eure Kontaktaufnahme!</h2>
-            <div class="divider"></div>
-            <p class="contact-teaser__info">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Glärnischstrasse, 8600 Dübendorf
-            </p>
-            <p class="contact-teaser__info">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.1 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09A16 16 0 0016.91 17.1l.46-.46a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-              +41 (0)76 439 4928 (WhatsApp)
-            </p>
-            <p class="contact-teaser__info">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              faceartzuerich@yahoo.com
-            </p>
-            <div class="contact-teaser__actions">
-              <a href="https://wa.me/41764394928?text=Hallo%20Isa%2C%20ich%20m%C3%B6chte%20eine%20Anfrage%20stellen."
-                 class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer">
-                <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                WhatsApp
-              </a>
-              <a href="kontakt.html" class="btn btn--outline">Formular</a>
+      <div class="hero-band">
+        <span class="hero-band__label">05 / The Possibilities</span>
+        <h2>What Can You Actually Build With It?</h2>
+        <p>Once OpenClaw is running, it becomes a platform — not just a chatbot. Here are three things I connected, and what they unlocked.</p>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="integ reveal-on-scroll">
+            <div class="integ__body">
+              <span class="pill">WordPress</span>
+              <h3>Connected to My Website</h3>
+              <p>Connected OpenClaw to my WordPress site. The AI can now draft, format, and publish blog posts — triggered by a single Telegram message.</p>
+              <div class="callout"><p style="font-style:italic;font-size:.9375rem;color:var(--color-text-muted);line-height:1.6">Content creation that runs itself. Brief the AI, get a draft post live in minutes.</p></div>
+            </div>
+            <div class="integ__icon-wrap"><div class="integ__icon">🌐</div></div>
+          </div>
+
+          <div class="integ integ--rev reveal-on-scroll">
+            <div class="integ__icon-wrap"><div class="integ__icon">⚙️</div></div>
+            <div class="integ__body">
+              <span class="pill">GitHub</span>
+              <h3>Linked to My Code Repository</h3>
+              <p>Linked OpenClaw to my GitHub repositories. The agent can read code, suggest changes, commit updates, and summarise pull requests.</p>
+              <div class="callout"><p style="font-style:italic;font-size:.9375rem;color:var(--color-text-muted);line-height:1.6">Automated code review, documentation, and version tracking — without opening GitHub manually.</p></div>
             </div>
           </div>
 
-          <form class="contact-form" id="contactForm" novalidate>
-            <div class="contact-form__row">
-              <div class="contact-form__field">
-                <label class="contact-form__label" for="firstName">Vorname</label>
-                <input class="contact-form__input" type="text" id="firstName" name="firstName" placeholder="Maria" required>
-              </div>
-              <div class="contact-form__field">
-                <label class="contact-form__label" for="lastName">Nachname</label>
-                <input class="contact-form__input" type="text" id="lastName" name="lastName" placeholder="Muster" required>
-              </div>
+          <div class="integ reveal-on-scroll">
+            <div class="integ__body">
+              <span class="pill">Telegram Bot</span>
+              <h3>A Bot That Works While I Sleep</h3>
+              <p>Built a Telegram bot that talks to OpenClaw. I can send a message from my phone and the AI executes tasks on my server.</p>
+              <div class="callout"><p style="font-style:italic;font-size:.9375rem;color:var(--color-text-muted);line-height:1.6">Your AI becomes mobile. Approve, query, or trigger automation from anywhere — via an app you already use.</p></div>
             </div>
-            <div class="contact-form__field">
-              <label class="contact-form__label" for="email">Email</label>
-              <input class="contact-form__input" type="email" id="email" name="email" placeholder="maria@beispiel.ch" required>
-            </div>
-            <div class="contact-form__field">
-              <label class="contact-form__label" for="message">Nachricht</label>
-              <textarea class="contact-form__textarea" id="message" name="message" rows="5" placeholder="Hallo Isa, ich plane einen Kindergeburtstag am …" required></textarea>
-            </div>
-            <button type="submit" class="btn btn--primary btn--full">Senden</button>
-            <p class="contact-form__confirm" id="formConfirm">Danke — ich melde mich in der Regel innerhalb von 24 Stunden.</p>
-          </form>
-
+            <div class="integ__icon-wrap"><div class="integ__icon">📱</div></div>
+          </div>
         </div>
       </div>
+
+      <div class="skills-bg">
+        <div class="container">
+          <div class="section-intro reveal-on-scroll">
+            <span class="section-label">Available Skills</span>
+            <h2 class="section-heading">What OpenClaw Can Do</h2>
+          </div>
+          <div class="grid-4">
+            <div class="card skill-tile reveal-on-scroll"><span class="skill-tile__icon">🔍</span><span class="skill-tile__label">Web Search</span></div>
+            <div class="card skill-tile reveal-on-scroll" style="transition-delay:80ms"><span class="skill-tile__icon">📄</span><span class="skill-tile__label">Document Generation</span></div>
+            <div class="card skill-tile reveal-on-scroll" style="transition-delay:160ms"><span class="skill-tile__icon">💻</span><span class="skill-tile__label">Code Execution</span></div>
+            <div class="card skill-tile reveal-on-scroll" style="transition-delay:240ms"><span class="skill-tile__icon">🖼️</span><span class="skill-tile__label">Image Analysis</span></div>
+            <div class="card skill-tile reveal-on-scroll" style="transition-delay:320ms"><span class="skill-tile__icon">🔌</span><span class="skill-tile__label">API Integration</span></div>
+            <div class="card skill-tile reveal-on-scroll" style="transition-delay:400ms"><span class="skill-tile__icon">🕐</span><span class="skill-tile__label">Scheduled Tasks</span></div>
+            <div class="card skill-tile reveal-on-scroll" style="transition-delay:480ms"><span class="skill-tile__icon">🧠</span><span class="skill-tile__label">Persistent Memory</span></div>
+            <div class="card skill-tile reveal-on-scroll" style="transition-delay:560ms"><span class="skill-tile__icon">💬</span><span class="skill-tile__label">Multi-Channel Messaging</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-band">
+        <blockquote>"What started as a weekend experiment became a working AI infrastructure for my daily workflows."</blockquote>
+        <p>If you are curious about what this could mean for your team — let's talk.</p>
+        <a href="#" class="btn-white"><span>Get in Touch →</span></a>
+      </div>
+
     </section>
 
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
-        <div class="footer__brand">
-          <p class="footer__logo">Face Art Zürich</p>
-          <p class="footer__tagline">Kinderschminken &amp; Face Art</p>
+        <div>
+          <div class="footer-logo-row">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <defs>
+                <linearGradient id="lg2" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#FF6B35"/><stop offset="100%" stop-color="#C9006A"/>
+                </linearGradient>
+              </defs>
+              <circle cx="16" cy="21" r="7" fill="url(#lg2)"/>
+              <line x1="16" y1="13" x2="16" y2="4"  stroke="url(#lg2)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="16" y1="13" x2="23" y2="7"  stroke="url(#lg2)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="16" y1="13" x2="9"  y2="7"  stroke="url(#lg2)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="16" y1="13" x2="26" y2="13" stroke="url(#lg2)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="16" y1="13" x2="6"  y2="13" stroke="url(#lg2)" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <p class="footer__logo-text">OpenClaw Experience</p>
+          </div>
+          <p class="footer__tagline">A personal experiment in self-hosted AI</p>
         </div>
         <div>
-          <p class="footer__heading">Seiten</p>
-                    <nav class="footer__links" aria-label="Footer Navigation">
-            <a href="kinderschminken.html">Kinderschminken</a>
-            <a href="hochzeiten.html">Hochzeiten</a>
-            <a href="unternehmen.html">Für Unternehmen</a>
-            <a href="about.html">Über mich</a>
-            <a href="kontakt.html">Kontakt</a>
+          <p class="footer__heading">Quick Links</p>
+          <nav class="footer__links" aria-label="Footer navigation">
+            <a href="#journey">Journey</a>
+            <a href="#big-picture">Big Picture</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#setup">Setup</a>
+            <a href="#possibilities">Possibilities</a>
           </nav>
         </div>
         <div>
-          <p class="footer__heading">Kontakt</p>
-          <div class="footer__contact">
-            <p>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.1 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09A16 16 0 0016.91 17.1l.46-.46a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-              +41 (0)764394928
-            </p>
-            <p>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              faceartzuerich@yahoo.com
-            </p>
-          </div>
+          <p class="footer__heading">Built with</p>
+          <p class="footer__built">OpenClaw + Claude Code</p>
+          <span class="footer__pill">GitHub Pages</span>
         </div>
       </div>
-      <div class="footer__bottom">
-        <p>© 2026 Face Art Zürich — Isa, Dübendorf</p>
-      </div>
+      <div class="footer__bottom">© 2025 · Presented to my team · Made possible by open-source AI</div>
     </div>
   </footer>
 
-  <!-- Floating WhatsApp -->
-  <a href="https://wa.me/41764394928" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Kontakt">
-    <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-  </a>
+  <script>
+    // Theme toggle (in-memory only)
+    let dark = false;
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      dark = !dark;
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
+      document.getElementById('themeToggle').textContent = dark ? '🌙' : '☀️';
+    });
 
-  <script src="src/js/main.js"></script>
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+      mobileNav.setAttribute('aria-hidden', !open);
+    });
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileNav.setAttribute('aria-hidden', 'true');
+    }
+
+    // Scroll reveal
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObs.observe(el));
+
+    // Active nav highlight
+    const navObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+          const lnk = document.querySelector(`.nav-link[data-section="${e.target.id}"]`);
+          if (lnk) lnk.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
+
+    // Photo error handler for real paths
+    document.querySelectorAll('.photo-card__media img').forEach(img => {
+      if (img.getAttribute('src') !== '#') {
+        img.onerror = function() {
+          this.style.display = 'none';
+          const ph = this.nextElementSibling;
+          if (ph) ph.style.display = 'flex';
+        };
+      }
+    });
+  </script>
 </body>
 </html>
