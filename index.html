@@ -395,6 +395,63 @@
       .grid-3{grid-template-columns:repeat(2,1fr)}
       .grid-4{grid-template-columns:repeat(2,1fr)}
     }
+
+    /* Interactive Accordion – Journey */
+    .ia-wrap{max-width:960px;margin:0 auto var(--space-10)}
+    .ia{display:flex;height:440px;border-radius:var(--radius-lg);overflow:hidden;gap:3px;background:#0c0820}
+    .ia-panel{
+      position:relative;flex:1 1 0%;overflow:hidden;cursor:pointer;
+      background-size:cover;background-position:top center;background-color:#0c0820;
+      border:2px solid #1e1230;
+      opacity:0;transform:translateX(-50px);
+      transition:flex .7s cubic-bezier(.4,0,.2,1),box-shadow .7s,border-color .4s,
+                 opacity .5s ease,transform .5s ease}
+    .ia-panel.ia--visible{opacity:1;transform:translateX(0)}
+    .ia-panel.ia--active{flex:6 1 0%;border-color:var(--sunrise-coral);
+      box-shadow:0 20px 60px rgba(0,0,0,.5);z-index:2}
+    .ia-panel__shade{position:absolute;inset:0;pointer-events:none;
+      background:rgba(0,0,0,.52);transition:background .7s}
+    .ia-panel.ia--active .ia-panel__shade{
+      background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.15) 55%,transparent 100%)}
+    .ia-panel__label{position:absolute;left:0;right:0;bottom:14px;
+      display:flex;align-items:center;gap:10px;padding:0 14px;z-index:3}
+    .ia-panel__icon{min-width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+      border-radius:50%;background:rgba(15,5,35,.85);backdrop-filter:blur(8px);
+      border:1.5px solid rgba(255,107,53,.5);font-size:1.125rem;flex-shrink:0}
+    .ia-panel__title{font-weight:700;font-size:.9375rem;color:white;white-space:nowrap;line-height:1.3;
+      opacity:0;transform:translateX(20px);transition:opacity .6s ease,transform .6s ease}
+    .ia-panel__sub{font-size:.75rem;color:rgba(255,255,255,.72);white-space:nowrap;line-height:1.3;
+      opacity:0;transform:translateX(20px);transition:opacity .6s .07s ease,transform .6s .07s ease}
+    .ia-panel.ia--active .ia-panel__title,
+    .ia-panel.ia--active .ia-panel__sub{opacity:1;transform:translateX(0)}
+    @media(max-width:640px){
+      .ia{flex-direction:column;height:auto}
+      .ia-panel{flex:none!important;height:70px;opacity:1!important;transform:none!important}
+      .ia-panel.ia--active{height:250px}
+      .ia-panel__title,.ia-panel__sub{white-space:normal}
+    }
+
+    /* Live Preview – Possibilities */
+    .live-preview{display:grid;grid-template-columns:1fr 1fr;
+      gap:clamp(24px,4vw,56px);align-items:center;
+      padding:var(--space-12) 0;margin-top:var(--space-6);
+      border-top:1px solid var(--color-border)}
+    .live-preview__body{display:flex;flex-direction:column;gap:var(--space-4)}
+    .live-preview__body h3{font-size:1.375rem;font-weight:700;color:var(--color-text)}
+    .live-preview__body>p{font-size:.9375rem;color:var(--color-text-muted);line-height:1.7}
+    .btn-sunrise{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;
+      border-radius:var(--radius-full);background:var(--sunrise-gradient);color:white;
+      font-weight:700;font-size:.9375rem;text-decoration:none;width:fit-content;
+      transition:opacity .2s,transform .2s}
+    .btn-sunrise:hover{opacity:.88;transform:translateY(-2px)}
+    .live-preview__media{border-radius:var(--radius-lg);overflow:hidden;
+      box-shadow:var(--shadow-md);max-width:220px;margin:0 auto;
+      border:2px solid var(--color-border)}
+    .live-preview__media img{width:100%;display:block}
+    @media(max-width:640px){
+      .live-preview{grid-template-columns:1fr}
+      .live-preview__media{max-width:180px}
+    }
   </style>
 </head>
 <body>
@@ -470,102 +527,64 @@
           <p class="section-description">Before I explain what OpenClaw is, let me show you what I actually built. Over the past few months I set up a private AI assistant running on my own server — connected to Telegram, WordPress, and GitHub. These are a few snapshots from that journey.</p>
         </div>
 
-        <div class="grid-3">
-          <div class="photo-card reveal-on-scroll">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Erste Schritte</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7513.PNG" alt="Erste Test-Nachrichten an Sunny" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Erste Schritte</span></div>
+        <div class="ia-wrap reveal-on-scroll">
+          <div class="ia" id="journeyAccordion">
+
+            <div class="ia-panel ia--active" style="background-image:url('BIlder_Open%20Claw/IMG_7513.PNG')">
+              <div class="ia-panel__shade"></div>
+              <div class="ia-panel__label">
+                <div class="ia-panel__icon">🚀</div>
+                <div>
+                  <div class="ia-panel__title">Day One</div>
+                  <div class="ia-panel__sub">Hi, Ping, Test — Sunny antwortet</div>
+                </div>
+              </div>
             </div>
-            <p class="photo-card__caption">Tag 1: «Hi», «Ping», «Test» — Sunny antwortet zum ersten Mal</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:80ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Live Data</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7515.PNG" alt="Wetterdaten für Dübendorf live abgerufen" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Live Data</span></div>
+
+            <div class="ia-panel" style="background-image:url('BIlder_Open%20Claw/IMG_7515.PNG')">
+              <div class="ia-panel__shade"></div>
+              <div class="ia-panel__label">
+                <div class="ia-panel__icon">🌤️</div>
+                <div>
+                  <div class="ia-panel__title">Live Data</div>
+                  <div class="ia-panel__sub">Wetter Dübendorf in Echtzeit</div>
+                </div>
+              </div>
             </div>
-            <p class="photo-card__caption">Wetterdaten für Dübendorf — trotz Tool-Fehler im ersten Anlauf</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:160ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Skills</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7514.PNG" alt="Sunny entdeckt ClawHub Skills" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Skills</span></div>
+
+            <div class="ia-panel" style="background-image:url('BIlder_Open%20Claw/IMG_7521.PNG')">
+              <div class="ia-panel__shade"></div>
+              <div class="ia-panel__label">
+                <div class="ia-panel__icon">🧠</div>
+                <div>
+                  <div class="ia-panel__title">Self-Improving</div>
+                  <div class="ia-panel__sub">Lernt aus Korrekturen automatisch</div>
+                </div>
+              </div>
             </div>
-            <p class="photo-card__caption">Sunny entdeckt ClawHub — neue Skills direkt per Textnachricht installieren</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:240ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Voice</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7520.PNG" alt="Telegram Voice Skill installiert" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Voice</span></div>
+
+            <div class="ia-panel" style="background-image:url('BIlder_Open%20Claw/IMG_7532.PNG')">
+              <div class="ia-panel__shade"></div>
+              <div class="ia-panel__label">
+                <div class="ia-panel__icon">💻</div>
+                <div>
+                  <div class="ia-panel__title">Web Dev</div>
+                  <div class="ia-panel__sub">Website bauen via Telegram</div>
+                </div>
+              </div>
             </div>
-            <p class="photo-card__caption">telegram-voice installiert — Sprachnachrichten werden jetzt verarbeitet</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:320ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">KI-Wissen</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7522.PNG" alt="Ontology Skill installiert" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>KI-Wissen</span></div>
+
+            <div class="ia-panel" style="background-image:url('BIlder_Open%20Claw/IMG_7537.PNG')">
+              <div class="ia-panel__shade"></div>
+              <div class="ia-panel__label">
+                <div class="ia-panel__icon">⚡</div>
+                <div>
+                  <div class="ia-panel__title">Real Talk</div>
+                  <div class="ia-panel__sub">API leer? Modell wechseln, weiter</div>
+                </div>
+              </div>
             </div>
-            <p class="photo-card__caption">Ontology-Skill aktiv — Sunny merkt sich Projekte, Aufgaben, Beziehungen</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:400ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Self-Improving</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7521.PNG" alt="Sunny erklärt sein Self-Improving System" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Self-Improving</span></div>
-            </div>
-            <p class="photo-card__caption">«Ja, ich habe ein Self-Improving System» — corrections.md und memory.md</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:80ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Research</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7519.PNG" alt="Nahost-News live recherchiert" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Research</span></div>
-            </div>
-            <p class="photo-card__caption">Nahost-News live recherchiert: USA/Iran-Waffenruhe direkt aus der Tagesschau</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:160ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Web Dev</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7532.PNG" alt="Sunny baut die Face Art Zürich Website" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Web Dev</span></div>
-            </div>
-            <p class="photo-card__caption">Sunny baut die Face Art Zürich Website — liest alle Seiten, wählt 16 Bilder</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:240ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Deploy</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7535.PNG" alt="Face Art Galerie live mit 12 Bildern" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Deploy</span></div>
-            </div>
-            <p class="photo-card__caption">Galerie live mit 12 Bildern — Screenshot als Beweis direkt im Chat</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:320ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Real Talk</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7537.PNG" alt="API-Billing-Fehler, Modell gewechselt" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Real Talk</span></div>
-            </div>
-            <p class="photo-card__caption">Credits leer, Modell auf Kimi 2.5 gewechselt — und einfach weitergemacht</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:400ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Planning</span></span>
-              <img src="BIlder_Open%20Claw/IMG_7534.PNG" alt="Phase 1 Roadmap geplant" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Planning</span></div>
-            </div>
-            <p class="photo-card__caption">Phase 1 Roadmap: Architekt, UX-Agent, GitHub Issues — Sunny plant selbst mit</p>
-          </div>
-          <div class="photo-card reveal-on-scroll" style="transition-delay:80ms">
-            <div class="photo-card__media">
-              <span class="photo-card__tag"><span class="tag-pill">Ehrlichkeit</span></span>
-              <img src="BIlder_Open%20Claw/PHOTO-2026-05-10-22-20-25.jpg" alt="Sunny gesteht: heute nichts Produktives gemacht" loading="lazy">
-              <div class="photo-ph"><span class="photo-ph__icon">📸</span><span>Ehrlichkeit</span></div>
-            </div>
-            <p class="photo-card__caption">«Heute nichts Produktives gemacht.» — Sunny bleibt ehrlich, auch wenn es unbequem ist</p>
+
           </div>
         </div>
 
@@ -787,6 +806,21 @@
             </div>
             <div class="integ__icon-wrap"><div class="integ__icon">📱</div></div>
           </div>
+
+          <div class="live-preview reveal-on-scroll">
+            <div class="live-preview__body">
+              <span class="pill">Live</span>
+              <h3>Das Ergebnis — diese Website</h3>
+              <p>Diese Präsentation wurde von Sunny mitgebaut und über einen einzigen Push auf GitHub Pages deployed — gesteuert per Telegram. Kein manuelles Deployment, kein Code-Editor öffnen.</p>
+              <a href="https://gruneandreas-art.github.io/openclaw_learnings/" target="_blank" rel="noopener" class="btn-sunrise">
+                <span>🌐 Live-Website ansehen →</span>
+              </a>
+            </div>
+            <div class="live-preview__media">
+              <img src="BIlder_Open%20Claw/IMG_7532.PNG" alt="Sunny baut die Website via Telegram" loading="lazy">
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -927,16 +961,18 @@
     }, { threshold: 0.4 });
     document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
 
-    // Photo error handler for real paths
-    document.querySelectorAll('.photo-card__media img').forEach(img => {
-      if (img.getAttribute('src') !== '#') {
-        img.onerror = function() {
-          this.style.display = 'none';
-          const ph = this.nextElementSibling;
-          if (ph) ph.style.display = 'flex';
-        };
-      }
-    });
+    // Interactive accordion – Journey
+    (function initAccordion() {
+      const panels = document.querySelectorAll('#journeyAccordion .ia-panel');
+      if (!panels.length) return;
+      panels.forEach((panel, i) => {
+        panel.addEventListener('click', () => {
+          panels.forEach(p => p.classList.remove('ia--active'));
+          panel.classList.add('ia--active');
+        });
+        setTimeout(() => panel.classList.add('ia--visible'), 150 * i);
+      });
+    })();
   </script>
 </body>
 </html>
