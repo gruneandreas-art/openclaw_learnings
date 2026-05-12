@@ -396,36 +396,80 @@
       .grid-4{grid-template-columns:repeat(2,1fr)}
     }
 
-    /* Image Accordion – Journey */
-    .acc-track{overflow-x:auto;padding:4px 0 14px;-webkit-overflow-scrolling:touch;
-      scrollbar-width:thin;scrollbar-color:rgba(255,107,53,.35) transparent}
-    .acc-track::-webkit-scrollbar{height:3px}
-    .acc-track::-webkit-scrollbar-thumb{background:rgba(255,107,53,.35);border-radius:2px}
-    .acc-row{display:flex;flex-direction:row;gap:5px;align-items:stretch;min-width:min-content;padding:2px}
-    .acc-item{
-      position:relative;height:clamp(380px,55vh,650px);border-radius:14px;overflow:hidden;
-      flex-shrink:0;cursor:pointer;width:62px;
-      transition:width .65s cubic-bezier(.4,0,.2,1),box-shadow .5s}
-    .acc-item.acc--active{width:340px;box-shadow:0 16px 48px rgba(0,0,0,.45)}
-    .acc-item img{
-      position:absolute;inset:0;width:100%;height:100%;
-      object-fit:cover;object-position:top center;
-      pointer-events:none}
-    .acc-item__overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);transition:background .5s;pointer-events:none}
-    .acc-item.acc--active .acc-item__overlay{
-      background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.08) 55%,transparent 100%)}
-    .acc-item__label{
-      position:absolute;bottom:20px;left:50%;z-index:2;
-      color:white;font-size:.875rem;font-weight:700;white-space:nowrap;
-      text-shadow:0 1px 6px rgba(0,0,0,.7);letter-spacing:.02em;
-      transform:translateX(-50%) rotate(90deg);
-      transition:transform .45s cubic-bezier(.4,0,.2,1),bottom .45s ease,opacity .3s}
-    .acc-item.acc--active .acc-item__label{
-      transform:translateX(-50%) rotate(0deg);bottom:22px}
+    /* Bento Gallery – Journey */
+    .bento-grid{display:grid;grid-template-columns:repeat(4,1fr);
+      grid-auto-rows:90px;gap:8px;max-width:960px;margin:0 auto}
+    .b-tall{grid-column:span 1;grid-row:span 4}
+    .b-wide{grid-column:span 2;grid-row:span 2}
+    .b-big {grid-column:span 2;grid-row:span 3}
+    .b-med {grid-column:span 1;grid-row:span 3}
+    .b-sm  {grid-column:span 1;grid-row:span 2}
+    .bento-item{position:relative;overflow:hidden;border-radius:12px;cursor:pointer;
+      transition:transform .3s ease,box-shadow .3s ease}
+    .bento-item:hover{transform:scale(1.03);box-shadow:0 8px 28px rgba(0,0,0,.45)}
+    .bento-item img{width:100%;height:100%;object-fit:cover;object-position:top center;
+      display:block;pointer-events:none}
+    .bento-item__hover{position:absolute;inset:0;opacity:0;
+      background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.1) 60%,transparent 100%);
+      transition:opacity .28s;
+      display:flex;flex-direction:column;justify-content:flex-end;padding:10px 12px}
+    .bento-item:hover .bento-item__hover{opacity:1}
+    .bento-item__title{color:white;font-size:.8rem;font-weight:700;line-height:1.3}
+    .bento-item__desc{color:rgba(255,255,255,.72);font-size:.7rem;margin-top:2px;
+      overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
     @media(max-width:640px){
-      .acc-item{height:260px;width:42px}
-      .acc-item.acc--active{width:220px}
+      .bento-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:80px}
+      .b-big,.b-wide{grid-column:span 2}
+      .b-tall{grid-row:span 3}
     }
+
+    /* Bento Modal / Lightbox */
+    .bento-modal{position:fixed;inset:0;z-index:9000;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      padding:16px;
+      opacity:0;pointer-events:none;transition:opacity .25s ease}
+    .bento-modal.is-open{opacity:1;pointer-events:auto}
+    .bento-modal__backdrop{position:absolute;inset:0;
+      background:rgba(0,0,0,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+    .bento-modal__frame{position:relative;z-index:1;
+      background:rgba(18,8,36,.6);border:1px solid rgba(255,255,255,.1);border-radius:20px;
+      overflow:hidden;width:min(92vw,660px);display:flex;flex-direction:column;
+      transform:scale(.96);transition:transform .28s ease}
+    .bento-modal.is-open .bento-modal__frame{transform:scale(1)}
+    .bento-modal__close{position:absolute;top:10px;right:10px;z-index:2;
+      width:30px;height:30px;border-radius:50%;
+      background:rgba(220,220,220,.18);border:none;cursor:pointer;
+      color:white;font-size:1.1rem;line-height:1;
+      display:flex;align-items:center;justify-content:center;
+      transition:background .2s}
+    .bento-modal__close:hover{background:rgba(255,255,255,.28)}
+    .bento-modal__img-wrap{position:relative;
+      display:flex;align-items:center;justify-content:center;
+      background:#0a051a;max-height:68vh;overflow:hidden}
+    .bento-modal__img{max-width:100%;max-height:68vh;object-fit:contain;display:block}
+    .bento-modal__caption{position:absolute;bottom:0;left:0;right:0;padding:12px 16px;
+      background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 100%)}
+    .bento-modal__caption h3{color:white;font-size:.9375rem;font-weight:700;margin:0 0 2px}
+    .bento-modal__caption p{color:rgba(255,255,255,.68);font-size:.8rem;margin:0}
+    .bento-modal__dock{position:relative;z-index:1;margin-top:12px;
+      display:flex;align-items:center;padding:10px 14px;gap:0;
+      background:rgba(100,160,255,.14);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border:1px solid rgba(100,160,255,.22);border-radius:14px;
+      overflow-x:auto;max-width:min(92vw,660px);
+      cursor:grab;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .bento-modal__dock:active{cursor:grabbing}
+    .bento-modal__dock::-webkit-scrollbar{display:none}
+    .bento-thumb{width:40px;height:40px;border-radius:8px;overflow:hidden;
+      flex-shrink:0;cursor:pointer;border:2px solid transparent;margin:0 -3px;
+      transition:transform .3s cubic-bezier(.4,0,.2,1),border-color .2s,box-shadow .2s}
+    .bento-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;pointer-events:none}
+    .bento-thumb:nth-child(odd) {transform:rotate( 10deg)}
+    .bento-thumb:nth-child(even){transform:rotate(-12deg)}
+    .bento-thumb.is-active{border-color:rgba(255,255,255,.72);z-index:5;
+      transform:rotate(0deg) scale(1.3) translateY(-10px) !important;
+      box-shadow:0 8px 20px rgba(0,0,0,.55)}
+    .bento-thumb:hover:not(.is-active){
+      transform:rotate(0deg) scale(1.28) translateY(-8px) !important;z-index:4}
 
     /* Live Preview – Possibilities */
     .live-preview{display:grid;grid-template-columns:1fr 1fr;
@@ -523,130 +567,89 @@
           <p class="section-description">Before I explain what OpenClaw is, let me show you what I actually built. Over the past few months I set up a private AI assistant running on my own server — connected to Telegram, WordPress, and GitHub. These are a few snapshots from that journey.</p>
         </div>
 
-        <div class="acc-track reveal-on-scroll">
-          <div class="acc-row" id="journeyAccordion">
+        <div class="bento-grid reveal-on-scroll">
 
-            <div class="acc-item acc--active">
-              <img src="BIlder_Open%20Claw/IMG_7513.PNG" alt="Day One" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Day One</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7512.PNG" alt="Bot Setup" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Bot Setup</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7514.PNG" alt="Skill Discovery" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Skill Discovery</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7515.PNG" alt="Live Weather" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Live Weather</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7516.PNG" alt="Forecast" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Forecast</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7517.PNG" alt="Voice Security" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Voice Security</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7518.PNG" alt="Server Monitor" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Server Monitor</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7519.PNG" alt="News Research" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">News Research</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7520.PNG" alt="Voice Install" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Voice Install</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7521.PNG" alt="Self-Improving" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Self-Improving</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7522.PNG" alt="Ontology Skill" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Ontology Skill</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7532.PNG" alt="Website Build" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Website Build</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7533.PNG" alt="Improvements" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Improvements</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7534.PNG" alt="Phase 1 Plan" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Phase 1 Plan</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7535.PNG" alt="Gallery Live" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Gallery Live</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7536.PNG" alt="WordPress Deploy" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">WordPress Deploy</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7537.PNG" alt="API Switch" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">API Switch</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/IMG_7538.PNG" alt="Agent Roles" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Agent Roles</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/PHOTO-2026-05-10-22-20-25.jpg" alt="Honest Moment" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Honest Moment</span>
-            </div>
-
-            <div class="acc-item">
-              <img src="BIlder_Open%20Claw/PHOTO-2026-05-10-22-20-25%202.jpg" alt="Reset Day" loading="lazy">
-              <div class="acc-item__overlay"></div>
-              <span class="acc-item__label">Reset Day</span>
-            </div>
-
+          <div class="bento-item b-tall" data-id="1">
+            <img src="BIlder_Open%20Claw/IMG_7513.PNG" alt="Day One" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Day One</p><p class="bento-item__desc">Hi, Ping, Test — die ersten Antworten von Sunny</p></div>
           </div>
+          <div class="bento-item b-wide" data-id="2">
+            <img src="BIlder_Open%20Claw/IMG_7512.PNG" alt="Bot Setup" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Bot Setup</p><p class="bento-item__desc">Telegram-Bot konfiguriert und verbunden</p></div>
+          </div>
+          <div class="bento-item b-sm" data-id="3">
+            <img src="BIlder_Open%20Claw/IMG_7514.PNG" alt="Skill Discovery" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Skill Discovery</p><p class="bento-item__desc">ClawHub entdeckt — Skills per Chat installieren</p></div>
+          </div>
+          <div class="bento-item b-med" data-id="4">
+            <img src="BIlder_Open%20Claw/IMG_7515.PNG" alt="Live Weather" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Live Weather</p><p class="bento-item__desc">Wetterdaten Dübendorf in Echtzeit</p></div>
+          </div>
+          <div class="bento-item b-wide" data-id="5">
+            <img src="BIlder_Open%20Claw/IMG_7516.PNG" alt="Forecast" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Forecast</p><p class="bento-item__desc">3-Tages-Vorhersage direkt im Chat</p></div>
+          </div>
+          <div class="bento-item b-tall" data-id="6">
+            <img src="BIlder_Open%20Claw/IMG_7517.PNG" alt="Voice Security" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Voice Security</p><p class="bento-item__desc">Skill als «suspicious» markiert — Force-Install?</p></div>
+          </div>
+          <div class="bento-item b-sm" data-id="7">
+            <img src="BIlder_Open%20Claw/IMG_7518.PNG" alt="Server Monitor" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Server Monitor</p><p class="bento-item__desc">Health-Monitor Logs, CloudFlare aktiv</p></div>
+          </div>
+          <div class="bento-item b-big" data-id="8">
+            <img src="BIlder_Open%20Claw/IMG_7519.PNG" alt="News Research" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">News Research</p><p class="bento-item__desc">USA/Iran Waffenruhe live recherchiert</p></div>
+          </div>
+          <div class="bento-item b-med" data-id="9">
+            <img src="BIlder_Open%20Claw/IMG_7520.PNG" alt="Voice Install" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Voice Install</p><p class="bento-item__desc">telegram-voice Skill installiert</p></div>
+          </div>
+          <div class="bento-item b-sm" data-id="10">
+            <img src="BIlder_Open%20Claw/IMG_7521.PNG" alt="Self-Improving" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Self-Improving</p><p class="bento-item__desc">corrections.md und memory.md — Sunny lernt selbst</p></div>
+          </div>
+          <div class="bento-item b-wide" data-id="11">
+            <img src="BIlder_Open%20Claw/IMG_7522.PNG" alt="Ontology Skill" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Ontology Skill</p><p class="bento-item__desc">Wissensgraph-Skill aktiv — merkt sich Projekte & Aufgaben</p></div>
+          </div>
+          <div class="bento-item b-tall" data-id="12">
+            <img src="BIlder_Open%20Claw/IMG_7532.PNG" alt="Website Build" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Website Build</p><p class="bento-item__desc">Face Art Zürich Website per Telegram gebaut</p></div>
+          </div>
+          <div class="bento-item b-sm" data-id="13">
+            <img src="BIlder_Open%20Claw/IMG_7533.PNG" alt="Improvements" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Improvements</p><p class="bento-item__desc">Mobile, Footer, Alt-Texte, Lazy Loading</p></div>
+          </div>
+          <div class="bento-item b-med" data-id="14">
+            <img src="BIlder_Open%20Claw/IMG_7534.PNG" alt="Phase 1 Plan" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Phase 1 Plan</p><p class="bento-item__desc">Architekt, UX-Agent, GitHub Issues — Sunny plant mit</p></div>
+          </div>
+          <div class="bento-item b-wide" data-id="15">
+            <img src="BIlder_Open%20Claw/IMG_7535.PNG" alt="Gallery Live" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Gallery Live</p><p class="bento-item__desc">12 Bilder live — Screenshot im Chat bestätigt</p></div>
+          </div>
+          <div class="bento-item b-sm" data-id="16">
+            <img src="BIlder_Open%20Claw/IMG_7536.PNG" alt="WordPress Deploy" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">WordPress Deploy</p><p class="bento-item__desc">HTML erfolgreich zu WordPress hochgeladen</p></div>
+          </div>
+          <div class="bento-item b-tall" data-id="17">
+            <img src="BIlder_Open%20Claw/IMG_7537.PNG" alt="API Switch" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">API Switch</p><p class="bento-item__desc">Credits leer — auf Kimi 2.5 gewechselt, weiter</p></div>
+          </div>
+          <div class="bento-item b-big" data-id="18">
+            <img src="BIlder_Open%20Claw/IMG_7538.PNG" alt="Agent Roles" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Agent Roles</p><p class="bento-item__desc">Senior WP-Dev mit 3 Sub-Agenten koordiniert</p></div>
+          </div>
+          <div class="bento-item b-sm" data-id="19">
+            <img src="BIlder_Open%20Claw/PHOTO-2026-05-10-22-20-25.jpg" alt="Honest Moment" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Honest Moment</p><p class="bento-item__desc">«Heute nichts Produktives gemacht»</p></div>
+          </div>
+          <div class="bento-item b-med" data-id="20">
+            <img src="BIlder_Open%20Claw/PHOTO-2026-05-10-22-20-25%202.jpg" alt="Reset Day" loading="lazy">
+            <div class="bento-item__hover"><p class="bento-item__title">Reset Day</p><p class="bento-item__desc">«Heute nicht genug geschafft» — Neustart</p></div>
+          </div>
+
         </div>
 
         <blockquote class="pull-quote reveal-on-scroll" style="max-width:680px;margin:var(--space-12) auto 0">
@@ -914,6 +917,22 @@
 
   </main>
 
+  <!-- Bento Lightbox Modal -->
+  <div id="bentoModal" class="bento-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="bento-modal__backdrop" id="modalBackdrop"></div>
+    <div class="bento-modal__frame">
+      <button class="bento-modal__close" id="modalClose" aria-label="Schließen">✕</button>
+      <div class="bento-modal__img-wrap">
+        <img id="modalImg" src="" alt="" class="bento-modal__img">
+        <div class="bento-modal__caption">
+          <h3 id="modalTitle"></h3>
+          <p id="modalDesc"></p>
+        </div>
+      </div>
+    </div>
+    <div class="bento-modal__dock" id="modalDock"></div>
+  </div>
+
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
@@ -1022,19 +1041,105 @@
     }, { threshold: 0.4 });
     document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
 
-    // Image accordion – Journey
-    (function initAccordion() {
-      const items = document.querySelectorAll('#journeyAccordion .acc-item');
-      if (!items.length) return;
-      function activate(item) {
-        items.forEach(i => i.classList.remove('acc--active'));
-        item.classList.add('acc--active');
-        // scroll active item into comfortable view
-        item.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+    // Bento Gallery Lightbox
+    (function initBentoGallery() {
+      const ITEMS = [
+        {id:1,  src:'BIlder_Open%20Claw/IMG_7513.PNG', title:'Day One',          desc:'Hi, Ping, Test — die ersten Antworten von Sunny'},
+        {id:2,  src:'BIlder_Open%20Claw/IMG_7512.PNG', title:'Bot Setup',         desc:'Telegram-Bot konfiguriert und verbunden'},
+        {id:3,  src:'BIlder_Open%20Claw/IMG_7514.PNG', title:'Skill Discovery',   desc:'ClawHub entdeckt — Skills direkt per Chat installieren'},
+        {id:4,  src:'BIlder_Open%20Claw/IMG_7515.PNG', title:'Live Weather',       desc:'Wetterdaten Dübendorf — trotz Tool-Fehler im ersten Anlauf'},
+        {id:5,  src:'BIlder_Open%20Claw/IMG_7516.PNG', title:'Forecast',           desc:'3-Tages-Vorhersage direkt im Telegram-Chat'},
+        {id:6,  src:'BIlder_Open%20Claw/IMG_7517.PNG', title:'Voice Security',     desc:'Skill als «suspicious» markiert — Force-Install?'},
+        {id:7,  src:'BIlder_Open%20Claw/IMG_7518.PNG', title:'Server Monitor',     desc:'Health-Monitor Logs, CloudFlare Domain aktiv'},
+        {id:8,  src:'BIlder_Open%20Claw/IMG_7519.PNG', title:'News Research',      desc:'USA/Iran Waffenruhe live recherchiert'},
+        {id:9,  src:'BIlder_Open%20Claw/IMG_7520.PNG', title:'Voice Install',      desc:'telegram-voice Skill erfolgreich installiert'},
+        {id:10, src:'BIlder_Open%20Claw/IMG_7521.PNG', title:'Self-Improving',     desc:'corrections.md & memory.md — Sunny lernt selbst'},
+        {id:11, src:'BIlder_Open%20Claw/IMG_7522.PNG', title:'Ontology Skill',     desc:'Wissensgraph-Skill aktiv — merkt sich Projekte & Aufgaben'},
+        {id:12, src:'BIlder_Open%20Claw/IMG_7532.PNG', title:'Website Build',      desc:'Face Art Zürich Website per Telegram-Befehl gebaut'},
+        {id:13, src:'BIlder_Open%20Claw/IMG_7533.PNG', title:'Improvements',       desc:'Mobile-CSS, Footer, Alt-Texte, Lazy Loading'},
+        {id:14, src:'BIlder_Open%20Claw/IMG_7534.PNG', title:'Phase 1 Plan',       desc:'Architekt, UX-Agent, GitHub Issues — Sunny plant mit'},
+        {id:15, src:'BIlder_Open%20Claw/IMG_7535.PNG', title:'Gallery Live',       desc:'12 Bilder live — Screenshot im Chat bestätigt'},
+        {id:16, src:'BIlder_Open%20Claw/IMG_7536.PNG', title:'WordPress Deploy',   desc:'HTML erfolgreich zu WordPress hochgeladen & live'},
+        {id:17, src:'BIlder_Open%20Claw/IMG_7537.PNG', title:'API Switch',         desc:'Credits leer — auf Kimi 2.5 gewechselt, weiter'},
+        {id:18, src:'BIlder_Open%20Claw/IMG_7538.PNG', title:'Agent Roles',        desc:'Senior WP-Dev mit 3 Sub-Agenten koordiniert'},
+        {id:19, src:'BIlder_Open%20Claw/PHOTO-2026-05-10-22-20-25.jpg',    title:'Honest Moment', desc:'«Heute nichts Produktives gemacht» — Sunny ist ehrlich'},
+        {id:20, src:'BIlder_Open%20Claw/PHOTO-2026-05-10-22-20-25%202.jpg', title:'Reset Day',    desc:'«Heute nicht genug geschafft» — Neustart'}
+      ];
+
+      const modal     = document.getElementById('bentoModal');
+      const modalImg  = document.getElementById('modalImg');
+      const modalTitle= document.getElementById('modalTitle');
+      const modalDesc = document.getElementById('modalDesc');
+      const modalClose= document.getElementById('modalClose');
+      const modalDock = document.getElementById('modalDock');
+      const backdrop  = document.getElementById('modalBackdrop');
+      let currentId   = null;
+
+      // Build dock thumbnails once
+      ITEMS.forEach(item => {
+        const thumb = document.createElement('div');
+        thumb.className = 'bento-thumb';
+        thumb.dataset.id = item.id;
+        const img = document.createElement('img');
+        img.src = item.src; img.alt = item.title; img.loading = 'lazy';
+        thumb.appendChild(img);
+        thumb.addEventListener('click', e => { e.stopPropagation(); openItem(item.id); });
+        modalDock.appendChild(thumb);
+      });
+
+      function openItem(id) {
+        const item = ITEMS.find(i => i.id === id);
+        if (!item) return;
+        currentId = id;
+        modalImg.src = item.src;
+        modalImg.alt = item.title;
+        modalTitle.textContent = item.title;
+        modalDesc.textContent  = item.desc;
+        modalDock.querySelectorAll('.bento-thumb').forEach(t =>
+          t.classList.toggle('is-active', +t.dataset.id === id));
+        const active = modalDock.querySelector('.bento-thumb.is-active');
+        if (active) active.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+        modal.setAttribute('aria-hidden','false');
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
       }
-      items.forEach(item => {
-        item.addEventListener('mouseenter', () => activate(item));
-        item.addEventListener('click',      () => activate(item));
+
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        currentId = null;
+      }
+
+      modalClose.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
+
+      document.addEventListener('keydown', e => {
+        if (!modal.classList.contains('is-open')) return;
+        if (e.key === 'Escape') { closeModal(); return; }
+        const idx = ITEMS.findIndex(i => i.id === currentId);
+        if (e.key === 'ArrowRight' && idx < ITEMS.length - 1) openItem(ITEMS[idx+1].id);
+        if (e.key === 'ArrowLeft'  && idx > 0)                openItem(ITEMS[idx-1].id);
+      });
+
+      // Wire bento items to open modal
+      document.querySelectorAll('.bento-item').forEach(el => {
+        el.addEventListener('click', () => openItem(+el.dataset.id));
+      });
+
+      // Dock drag-to-scroll
+      let dragging = false, startX, scrollLeft;
+      modalDock.addEventListener('mousedown', e => {
+        dragging = true; startX = e.pageX - modalDock.offsetLeft; scrollLeft = modalDock.scrollLeft;
+        modalDock.style.cursor = 'grabbing';
+      });
+      ['mouseleave','mouseup'].forEach(ev => modalDock.addEventListener(ev, () => {
+        dragging = false; modalDock.style.cursor = 'grab';
+      }));
+      modalDock.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        e.preventDefault();
+        modalDock.scrollLeft = scrollLeft - (e.pageX - modalDock.offsetLeft - startX) * 1.5;
       });
     })();
   </script>
